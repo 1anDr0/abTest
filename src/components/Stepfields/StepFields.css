@@ -1,0 +1,51 @@
+.stepfields {
+   background-color: rgb(255, 255, 255); 
+   display: grid;
+   padding: 10px 50px;
+}
+
+.wrapper {
+ 
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.label {
+    font-size: 15px;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+}
+
+.help {
+cursor: pointer;
+place-items: center;
+}
+
+
+.inputShell {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 0, 255, 0.815);
+  background: rgb(255, 255, 255);
+  
+}
+
+.prefix {
+   font-weight: 700;
+   color: rgb(59, 59, 59);
+   min-width: fit-content;
+}
+
+.textarea {
+    width: 100%;
+    resize: none;
+    border: none;
+    
+}
