@@ -1,0 +1,14 @@
+.RightPanel {
+   max-width: 600px;
+    max-height: 560px;
+    background-color: rgb(48, 48, 48);
+    border-radius: 20px;
+    padding: 50px;
+}
+
+.text {
+    line-height: 1.5em;
+    color: rgb(255, 255, 255);
+    
+}
+

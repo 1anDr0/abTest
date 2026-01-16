@@ -1,0 +1,13 @@
+* {
+  font-family: montserrat;
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
