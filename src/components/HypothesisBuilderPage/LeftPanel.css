@@ -1,6 +1,6 @@
 .LeftPanel {
-    max-width: 600px;
-    max-height: 560px;
+    width: 800px;
+    height: 600px;
     background-color: rgb(255, 255, 255);
     padding: 50px;
     border-radius: 20px;

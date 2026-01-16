@@ -2,7 +2,7 @@ import React from 'react'
 import StepFields from '../Stepfields/StepFields'
 import '../HypothesisBuilderPage/LeftPanel.css'
 
-const LeftPanel = ({value, setObservation, setEvidence, setGoal, setAudience, setEffect, setMetric}) => {
+const LeftPanel = ({value, setObservation, setEvidence, setGoal, setAudience, setEffect, setMetric, activeInput, setActiveInput}) => {
   return (
     <div className='LeftPanel'>
         <div className='wrapper'>
@@ -13,6 +13,8 @@ const LeftPanel = ({value, setObservation, setEvidence, setGoal, setAudience, se
         placeholder="nästan ingen av alla som besöker startsidan klickar på den viktigaste CTA-knappen 'Kontakta oss'"
         value={value}
         onChange={setObservation}
+        activeInput={activeInput}
+        setActiveInput={setActiveInput}
       />
      <StepFields
         id="evidence"
@@ -21,6 +23,8 @@ const LeftPanel = ({value, setObservation, setEvidence, setGoal, setAudience, se
         placeholder="titta på antalet klick i Hotjar heatmaps"
         value={value}
         onChange={setEvidence}
+        activeInput={activeInput}
+        setActiveInput={setActiveInput}
       />
        <StepFields
         id="goal"
@@ -29,6 +33,8 @@ const LeftPanel = ({value, setObservation, setEvidence, setGoal, setAudience, se
         placeholder="att knappen fångar mer uppmärksamhet och ger mer värde genom att byta texten till 'Jag är nyfiken, berätta mer!'"
         value={value}
         onChange={setGoal}
+        activeInput={activeInput}
+        setActiveInput={setActiveInput}
       />
       <StepFields
         id="audience"
@@ -37,6 +43,8 @@ const LeftPanel = ({value, setObservation, setEvidence, setGoal, setAudience, se
         placeholder="alla användare."
         value={value}
         onChange={setAudience}
+        activeInput={activeInput}
+        setActiveInput={setActiveInput}
       />
       <StepFields
         id="effect"
@@ -45,6 +53,8 @@ const LeftPanel = ({value, setObservation, setEvidence, setGoal, setAudience, se
         placeholder="till ökat intresse"
         value={value}
         onChange={setEffect}
+        activeInput={activeInput}
+        setActiveInput={setActiveInput}
       />
       <StepFields
         id="metric"
@@ -52,7 +62,9 @@ const LeftPanel = ({value, setObservation, setEvidence, setGoal, setAudience, se
         prefix="och effekten kommer att mätas "
         placeholder="ökad CTR på knappen."
         value={value}
-        onChange={setMetric}      
+        onChange={setMetric}
+        activeInput={activeInput}
+        setActiveInput={setActiveInput}      
         />
     </div>
     </div>

@@ -1,26 +1,36 @@
 import React from 'react'
 import "./StepFields.css"
+import { AiFillQuestionCircle } from "react-icons/ai";
 
-const StepFields = ({label, prefix, id, placeholder, value, onChange}) => {
+
+
+
+const StepFields = ({label, prefix, id, placeholder, value, onChange, activeInput, setActiveInput}) => {
+  
+  
+  const handleClick = () => {
+    setActiveInput(id);  
+  };
+
   return (
     <div className='stepfields'>
-      <div className='wrapper'>
+      <div className='wrapper' onClick={handleClick}>
        
         <div className='header'>
         <label htmlFor={id} className='label'>{label}</label>
-        <button className='help'>Help</button>
+        <p className='help'><AiFillQuestionCircle /></p>
         </div>
 
-        <div className="inputShell">
-        {prefix && <span className="prefix">{prefix}</span>}
-        <textarea
-          id={id}
-          className="textarea"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-
-        />
+         {/* Conditionally hide inputShell */}
+        <div className={`inputShell ${activeInput !== id ? 'hidden' : ''}`}>
+          {prefix && <span className="prefix">{prefix}</span>}
+          <textarea
+            id={id}
+            className="textarea"
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            placeholder={placeholder}
+          />
         </div>
       </div>
     </div>
