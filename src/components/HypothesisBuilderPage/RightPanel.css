@@ -1,24 +1,19 @@
 .RightPanel {
-    width: 800px;
-    background-color: rgb(48, 48, 48);
-    border-radius: 20px;
-    padding: 50px;
-      display: flex;
+  width: 800px;
+  background-color: rgb(48, 48, 48);
+  border-radius: 20px;
+  padding: 50px;
+  display: flex;
   justify-content: center; /* Horisontell centrering */
   align-items: center; /* Vertikal centrering */
-  
-    
 }
 
 .text {
-    font-size: 20px;;
-    line-height: 1.5em;
-    color: rgb(172, 172, 172);
+  font-size: 20px;
+  line-height: 1.5em;
+  color: rgb(172, 172, 172);
 
-    > strong {
-        color: rgb(255, 255, 255);rgb(255, 255, 255)
-    }
+  > strong {
+    color: rgb(255, 255, 255);
+  }
 }
-
-
-

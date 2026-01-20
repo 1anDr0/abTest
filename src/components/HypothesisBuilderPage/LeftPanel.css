@@ -1,7 +1,7 @@
 .LeftPanel {
-    width: 800px;
-    height: 600px;
-    background-color: rgb(255, 255, 255);
-    padding: 50px;
-    border-radius: 20px;
+  width: 800px;
+  background-color: rgb(243, 243, 243);
+  padding: 50px;
+  border-radius: 20px;
+  justify-content: center; /* Horisontell centrering */
 }

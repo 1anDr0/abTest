@@ -5,13 +5,13 @@ import { useState } from "react";
 
 function App() {
   const [observation, setObservation] = useState(
-    "nästan inga besökare klickar på CTA-knappen ‘Kontakta oss’ på startsidan."
+    "nästan inga besökare klickar på CTA-knappen ‘Kontakta oss’ på startsidan",
   );
   const [evidence, setEvidence] = useState(
-    "titta på antalet klick i Hotjar heatmaps"
+    "titta på antalet klick i Hotjar heatmaps",
   );
   const [goal, setGoal] = useState(
-    "att knappen fångar mer uppmärksamhet och ger mer värde genom att byta texten till 'Jag är nyfiken, berätta mer!'"
+    "att knappen fångar mer uppmärksamhet och ger mer värde genom att byta texten till 'Jag är nyfiken, berätta mer!'",
   );
   const [audience, setAudience] = useState("alla användare.");
   const [effect, setEffect] = useState("till ökat intresse");

@@ -1,32 +1,27 @@
 .stepfields {
-   padding: 20px 0px;
-    
-  
- 
+  padding: 20px 0px;
 }
 
 .wrapper {
- 
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 4px;
 }
 
 .label {
-    font-size: 15px;
-    font-weight: 700;
-    color: rgb(0, 0, 0);
+  font-size: 15px;
+  font-weight: 700;
+  color: rgb(0, 0, 0);
 }
 
 .help {
-cursor: pointer;
-place-items: center;
-
+  cursor: pointer;
+  place-items: center;
 }
-
 
 .inputShell {
   display: flex;
@@ -34,28 +29,26 @@ place-items: center;
   gap: 4px;
   padding: 8px 8px 8px 18px;
   border-radius: 12px;
-  border: 2px solid rgba(255, 217, 0, 0.815);
+  border: 2px solid rgba(255, 0, 234, 0.815);
   background: rgb(255, 255, 255);
   font-size: 16px;
-   line-height: 1.5em;
+  line-height: 1.5em;
 }
 
 .prefix {
-   font-weight: 500;
-   color: rgb(0, 0, 0);
-   min-width: fit-content;
-   
+  font-weight: 500;
+  color: rgb(0, 0, 0);
+  min-width: fit-content;
 }
 
 .textarea {
-    width: 100%;
-    resize: none;
-    border: none;
-    font-size: 16px;
-     line-height: 1.5em;
+  width: 100%;
+  resize: none;
+  border: none;
+  font-size: 16px;
+  line-height: 1.5em;
 }
 
 .inputShell.hidden {
   display: none;
-  
 }
