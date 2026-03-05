@@ -15,12 +15,14 @@ const HypotesBuilder = () => {
   return (
     <div className="page">
       <div className="layout">
-        <LeftPanel
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-          formData={formData}
-          setFormData={setFormData}
-        />
+        <div className="leftpanel-container">
+          <LeftPanel
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        </div>
         <RightPanel currentStep={currentStep} formData={formData} />
       </div>
     </div>

@@ -1,0 +1,22 @@
+.steps {
+}
+
+h1 {
+  font-size: 28px;
+  color: white;
+  margin-top: 100px;
+}
+
+label {
+  color: white;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+textarea {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  padding: 18px;
+  color: white;
+}

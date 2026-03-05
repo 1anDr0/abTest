@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <>
       <div className="header-container">
-        <h1>Skapa och optimera dina A/B-hypoteser</h1>
+        <h2>Skapa och optimera dina A/B-hypoteser</h2>
         <p>
           Följ dessa enkla steg för att formulera din hypotes och börja testa
           förbättringar på din webbplats.

@@ -2,7 +2,8 @@ import "./Step1.css";
 
 const Step1 = (formData, setFormData) => {
   return (
-    <div>
+    <div className="steps">
+      <h1>Insikt / Observation</h1>
       <label>Vad har ni observerat?</label>
       <textarea
         value={formData.observation}

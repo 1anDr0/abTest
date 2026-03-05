@@ -1,21 +1,22 @@
 .page {
   min-height: 100vh;
-  padding: 32px;
 }
 
 .layout {
   display: flex;
-  gap: 32px;
+  gap: 0px;
   align-items: flex-start;
 }
 
 /* valfritt: bestäm bredder */
 .leftpanel-container {
   flex: 1; /* vänster tar mer plats */
-  max-width: 640px;
+  max-width: 50%;
+  height: 100vh;
+  background-color: rgb(0, 0, 0);
 }
 
 .rightpanel-container {
   flex: 1; /* höger tar resten */
-  max-width: 720px;
+  max-width: 50%;
 }

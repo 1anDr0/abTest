@@ -3,7 +3,7 @@ import Step1 from "./Step1/Step1";
 
 const LeftPanel = ({ currentStep, setCurrentStep, formData, setFormData }) => {
   return (
-    <div className="leftpanel-container">
+    <div>
       <Header />
 
       {currentStep === 1 && (
