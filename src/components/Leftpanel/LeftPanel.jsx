@@ -1,13 +1,18 @@
+import "./Leftpanel.css";
 import Header from "./Header/Header";
 import Step1 from "./Step1/Step1";
 import Step2 from "./Step2/Step2";
+import Step3 from "./Step3/Step3";
+import Step4 from "./Step4/Step4";
 
 const LeftPanel = () => {
   return (
-    <div>
+    <div className="leftpanel-container">
       <Header />
       <Step1 />
       <Step2 />
+      <Step3 />
+      <Step4 />
     </div>
   );
 };
