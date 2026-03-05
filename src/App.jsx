@@ -1,11 +1,11 @@
 import "./App.css";
-import LeftPanel from "./components/Leftpanel/LeftPanel";
+import HypotesBuilder from "./components/HypotesBuilder/HypotesBuilder";
 
 function App() {
   return (
     <>
-      <div className="Leftpanel-container">
-        <LeftPanel />
+      <div>
+        <HypotesBuilder />;
       </div>
     </>
   );

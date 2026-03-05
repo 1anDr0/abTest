@@ -1,0 +1,21 @@
+.page {
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+/* valfritt: bestäm bredder */
+.leftpanel-container {
+  flex: 1; /* vänster tar mer plats */
+  max-width: 640px;
+}
+
+.rightpanel-container {
+  flex: 1; /* höger tar resten */
+  max-width: 720px;
+}
