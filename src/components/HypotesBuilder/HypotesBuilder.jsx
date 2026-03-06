@@ -8,22 +8,26 @@ const HypotesBuilder = () => {
 
   const [formData, setFormData] = useState({
     // Steg 1
-    observation: " 25% av användare inte klickar på CTA-knappen",
+    observation: "25% av användare inte klickar på CTA-knappen",
     evidence: "Användartester",
   });
 
   return (
     <div className="page">
-      <div className="layout">
-        <div className="leftpanel-container">
-          <LeftPanel
-            currentStep={currentStep}
-            setCurrentStep={setCurrentStep}
-            formData={formData}
-            setFormData={setFormData}
-          />
+      <div className="page-inner">
+        <div className="layout">
+          <div className="leftpanel-container">
+            <LeftPanel
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+              formData={formData}
+              setFormData={setFormData}
+            />
+          </div>
+          <div className="rightpanel-container">
+            <RightPanel currentStep={currentStep} formData={formData} />
+          </div>
         </div>
-        <RightPanel currentStep={currentStep} formData={formData} />
       </div>
     </div>
   );

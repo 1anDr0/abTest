@@ -1,8 +1,7 @@
 * {
-  background-color: #a5a1b5;
   font-family: inter;
   box-sizing: border-box;
-  max-width: 1920px;
-  margin: 0 auto;
-  padding: 0 0px;
+
+  margin: 0;
+  padding: 0;
 }

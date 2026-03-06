@@ -1,16 +1,20 @@
 import "./Step1.css";
+import { TbCircleNumber1 } from "react-icons/tb";
 
-const Step1 = (formData, setFormData) => {
+const Step1 = ({ formData, setFormData }) => {
   return (
     <div className="steps">
-      <h1>Insikt / Observation</h1>
+      <h1>
+        <TbCircleNumber1 />
+        Insikt / Observation
+      </h1>
       <label>Vad har ni observerat?</label>
       <textarea
         value={formData.observation}
         onChange={(e) =>
           setFormData({ ...formData, observation: e.target.value })
         }
-        placeholder="Exempel: Endast 3% klickar på CTA-knappen i hero-sektionen på startsidan."
+        placeholder="Exempel: 25% av användare inte klickar på CTA-knappen"
         rows={4}
       />
 
