@@ -11,12 +11,24 @@ label {
   color: white;
   display: block;
   margin-bottom: 0.5rem;
+  margin-top: 20px;
 }
 
 textarea {
   display: block;
   width: 100%;
   font-size: 16px;
+  background-color: rgba(255, 255, 255, 0.5);
   padding: 18px;
+
+  border-radius: 6px;
+}
+
+select {
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
   color: white;
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: 6px;
 }

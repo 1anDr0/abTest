@@ -1,13 +1,8 @@
-import "./Step1.css";
-import { TbCircleNumber1 } from "react-icons/tb";
+import styles from "./Step1.module.css";
 
 const Step1 = ({ formData, setFormData }) => {
   return (
-    <div className="steps">
-      <h1>
-        <TbCircleNumber1 />
-        Insikt / Observation
-      </h1>
+    <div className={styles.steps}>
       <label>Vad har ni observerat?</label>
       <textarea
         value={formData.observation}

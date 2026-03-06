@@ -8,8 +8,19 @@ const HypotesBuilder = () => {
 
   const [formData, setFormData] = useState({
     // Steg 1
-    observation: "25% av användare inte klickar på CTA-knappen",
+    observation: "",
     evidence: "Användartester",
+
+    //Steg 2
+    problem: "",
+
+    //Steg 3
+    change: "ändra CTA-texten från “Slutför köp” till “Få din beställning idag",
+    target: "Alla användare",
+    where: "Startsida",
+
+    //Steg 4
+    effect: "Klickfrekevensen (CTR)",
   });
 
   return (
