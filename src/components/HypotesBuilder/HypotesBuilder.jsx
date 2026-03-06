@@ -15,7 +15,7 @@ const HypotesBuilder = () => {
     problem: "",
 
     //Steg 3
-    change: "ändra CTA-texten från “Slutför köp” till “Få din beställning idag",
+    change: "",
     target: "Alla användare",
     where: "Startsida",
 

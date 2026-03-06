@@ -1,8 +1,8 @@
-import "./Step4.css";
+import styles from "./Step4.module.css";
 
 const Step4 = ({ formData, setFormData }) => {
   return (
-    <div className="steps">
+    <div className={styles.steps}>
       <label>Vad ska påverkas? </label>
       <select
         value={formData.effect}

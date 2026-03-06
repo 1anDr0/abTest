@@ -1,8 +1,8 @@
-import "./Step3.css";
+import styles from "./Step3.module.css";
 
 const Step3 = ({ formData, setFormData }) => {
   return (
-    <div className="steps">
+    <div className={styles.steps}>
       <label>Vad har ni observerat?</label>
       <textarea
         value={formData.change}

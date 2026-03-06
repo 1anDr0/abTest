@@ -27,10 +27,12 @@ const LeftPanel = ({ currentStep, setCurrentStep, formData, setFormData }) => {
 
         {currentStep === 1 && (
           <>
-            <Step1 formData={formData} setFormData={setFormData} />
-            <button className="next-btn" onClick={() => setCurrentStep(2)}>
-              Nästa steg <FaLongArrowAltRight />
-            </button>
+            <div className="line">
+              <Step1 formData={formData} setFormData={setFormData} />
+              <button className="next-btn" onClick={() => setCurrentStep(2)}>
+                Nästa steg <FaLongArrowAltRight />
+              </button>
+            </div>
           </>
         )}
       </div>
@@ -46,10 +48,12 @@ const LeftPanel = ({ currentStep, setCurrentStep, formData, setFormData }) => {
 
         {currentStep === 2 && (
           <>
-            <Step2 formData={formData} setFormData={setFormData} />
-            <button className="next-btn" onClick={() => setCurrentStep(3)}>
-              Nästa steg <FaLongArrowAltRight />
-            </button>
+            <div className="line">
+              <Step2 formData={formData} setFormData={setFormData} />
+              <button className="next-btn" onClick={() => setCurrentStep(3)}>
+                Nästa steg <FaLongArrowAltRight />
+              </button>
+            </div>
           </>
         )}
       </div>
@@ -65,10 +69,12 @@ const LeftPanel = ({ currentStep, setCurrentStep, formData, setFormData }) => {
 
         {currentStep === 3 && (
           <>
-            <Step3 formData={formData} setFormData={setFormData} />
-            <button className="next-btn" onClick={() => setCurrentStep(4)}>
-              Nästa steg <FaLongArrowAltRight />
-            </button>
+            <div className="line">
+              <Step3 formData={formData} setFormData={setFormData} />
+              <button className="next-btn" onClick={() => setCurrentStep(4)}>
+                Nästa steg <FaLongArrowAltRight />
+              </button>
+            </div>
           </>
         )}
       </div>

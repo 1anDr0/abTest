@@ -40,7 +40,7 @@
 }
 
 .step-card {
-  border: 1px dashed rgb(255, 255, 255);
+  /* border: 1px dashed rgb(255, 255, 255); */
   width: 100%;
   box-sizing: border-box;
 }
@@ -83,4 +83,22 @@
   justify-content: center;
   gap: 8px;
   cursor: pointer;
+}
+
+.line {
+  position: relative;
+  /* margin-top: 18px; */
+  margin-left: 14px;
+  padding-left: 28px;
+}
+
+.line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 0;
+  width: 2px;
+  background: rgba(210, 220, 255, 0.85);
+  border-radius: 999px;
 }
