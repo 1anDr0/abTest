@@ -1,7 +1,7 @@
 .leftpanel {
   min-height: 100vh;
   /* background: linear-gradient(180deg, #15005f, #05002c); */
-  padding: 0px 80px;
+  padding: 0px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center; /* center header+form together */

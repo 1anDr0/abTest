@@ -36,7 +36,3 @@ body {
   /* backgrounds handled by body, keep container transparent */
   background: transparent;
 }
-
-.rightpanel-container {
-  background: transparent;
-}

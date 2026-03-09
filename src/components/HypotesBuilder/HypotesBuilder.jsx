@@ -33,7 +33,7 @@ const HypotesBuilder = () => {
   return (
     <div className="page">
       <div className="page-inner">
-        <Header />
+        {/* <Header /> */}
         <div className="layout">
           <div className="leftpanel-container">
             <LeftPanel
