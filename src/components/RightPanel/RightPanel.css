@@ -1,0 +1,110 @@
+/* basic layout for right panel container */
+.rightpanel-container {
+  /* purple/grey tone requested */
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically center hypothesis wrapper */
+}
+
+/* hidden header element to reserve vertical space */
+.header-placeholder {
+  visibility: hidden;
+}
+
+.hypothesis-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* actual white card holding the hypothesis content */
+.hypothesis-box {
+  background: #ffffff;
+  padding: 6px 24px 86px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rightpanel-container h3 {
+  margin-top: 0px;
+  margin-bottom: 86px;
+  font-size: 14px;
+  text-align: center;
+  font-weight: 800;
+}
+
+/* steps wrapper with vertical line */
+.hypothesis-steps {
+  position: relative;
+  padding-left: 24px;
+  line-height: 2em;
+}
+.hypothesis-steps::before {
+  display: none; /* colored segments replace the base line */
+}
+
+.hypothesis-step {
+  position: relative;
+
+  padding-left: 16px;
+}
+/* remove small dot icon; segments alone convey status now */
+.hypothesis-step::before {
+  display: none;
+}
+
+/* base colored segment behind each step */
+.hypothesis-step::after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 0;
+  bottom: 0;
+  width: 4px; /* slightly thicker line */
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+.hypothesis-step.completed {
+  opacity: 0.4; /* dim text for finished steps */
+}
+/* no before element for completed steps */
+.hypothesis-step.completed::after {
+  background: #3ec858; /* green line segment */
+}
+
+.hypothesis-step.current {
+  opacity: 1; /* current step full opacity */
+}
+/* no before element for current step */
+.hypothesis-step.current::after {
+  background: #00337c; /* blue line segment */
+}
+
+.hypothesis-step.inactive {
+  opacity: 0.4;
+}
+
+.direction-text {
+  color: #000000; /* same green */
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+/* when hypothesis is finished we switch all text to black */
+.hypothesis-box.finalized,
+.hypothesis-box.finalized p,
+.hypothesis-box.finalized b,
+.hypothesis-box.finalized .direction-text,
+.hypothesis-box.finalized h3 {
+  color: #000000 !important;
+}
+
+/* when finalized we also cancel the dimming on completed steps */
+.hypothesis-box.finalized .hypothesis-step {
+  opacity: 1 !important;
+}
+
+/* override previous empty file to ensure preexisting styles don't conflict */

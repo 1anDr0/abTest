@@ -1,17 +1,27 @@
+/* page wrapper just expands to full height */
 .page {
   min-height: 100vh;
   width: 100%;
+}
+
+/* use body background to paint full-width left/right colours */
+html,
+body {
+  height: 100%;
+  margin: 0;
   background: linear-gradient(
     to right,
     #15005f 0%,
-    #15005f 50%,
+    #05002c 50%,
     #b8b4c4 50%,
     #b8b4c4 100%
   );
 }
 
 .page-inner {
+  /* constrain content area while backgrounds flow under it */
   max-width: 1920px;
+  width: 100%;
   margin: 0 auto;
   min-height: 100vh;
 }
@@ -23,9 +33,10 @@
 }
 
 .leftpanel-container {
-  background: linear-gradient(180deg, #15005f, #05002c);
+  /* backgrounds handled by body, keep container transparent */
+  background: transparent;
 }
 
 .rightpanel-container {
-  background: #b8b4c4;
+  background: transparent;
 }
