@@ -1,7 +1,7 @@
 .leftpanel {
   min-height: 100vh;
   /* background: linear-gradient(180deg, #15005f, #05002c); */
-  padding: 0px 20px;
+  padding: 0px 60px 0px 60px;
   display: flex;
   flex-direction: column;
   justify-content: center; /* center header+form together */
@@ -10,6 +10,10 @@
   box-sizing: border-box;
 }
 
+.leftpanel-header {
+  position: absolute;
+  top: 100px;
+}
 /* steps container takes remaining space (optional) */
 .steps-container {
   /* keep existing centering inside just in case */
@@ -23,11 +27,11 @@
 }
 
 .step-card.active {
-  padding: 20px;
+  padding: 20px 0px;
 }
 
 .step-card.collapsed {
-  padding: 2px 16px;
+  padding: 12px 0px;
   min-height: 36px;
   display: flex;
   align-items: center;
@@ -77,11 +81,11 @@
 
 .step-card.active {
   /* keep left padding equal to collapsed state */
-  padding: 20px 20px 20px 16px;
+  /* padding: 20px 20px 20px 16px; */
 }
 
 .step-card.collapsed {
-  padding: 12px 16px;
+  /* padding: 12px 16px; */
 }
 
 .step-heading {

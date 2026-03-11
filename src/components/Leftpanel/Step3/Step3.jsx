@@ -3,7 +3,7 @@ import styles from "./Step3.module.css";
 const Step3 = ({ formData, setFormData }) => {
   return (
     <div className={styles.steps}>
-      <label>Vad har ni observerat?</label>
+      <label>Beskriv förändring</label>
       <textarea
         value={formData.change}
         onChange={(e) => setFormData({ ...formData, change: e.target.value })}

@@ -1,8 +1,7 @@
 /* basic layout for right panel container */
 .rightpanel-container {
   /* purple/grey tone requested */
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0px 30px;
   display: flex;
   flex-direction: column;
   justify-content: center; /* vertically center hypothesis wrapper */
