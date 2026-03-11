@@ -18,7 +18,7 @@ const Step3 = ({ formData, setFormData }) => {
       >
         <option value="Alla användare">Alla användare</option>
       </select>
-      <label>Var sker förndringen?</label>
+      <label>Var sker förändringen?</label>
       <select
         value={formData.where}
         onChange={(e) => setFormData({ ...formData, where: e.target.value })}

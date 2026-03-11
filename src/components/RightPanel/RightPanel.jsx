@@ -26,7 +26,14 @@ export default function RightPanel({ currentStep, formData, finalized }) {
                   {formData.observation ||
                     "25% av användare inte klickar på CTA-knappen"}
                 </b>
-                , vilket bekräftas av <b>{formData.evidence || ""}</b>.
+                , vilket bekräftas av{" "}
+                <b>
+                  {" "}
+                  {formData.evidence === "Annat"
+                    ? formData.evidenceCustom || "egen källa"
+                    : formData.evidence || ""}
+                </b>
+                .
               </p>
             </div>
 

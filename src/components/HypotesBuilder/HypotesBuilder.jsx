@@ -14,6 +14,7 @@ const HypotesBuilder = () => {
     // Steg 1
     observation: "",
     evidence: "Användartester",
+    evidenceCustom: "",
 
     //Steg 2
     problem: "",

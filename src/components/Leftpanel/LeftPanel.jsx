@@ -54,9 +54,7 @@ const LeftPanel = ({
 
   return (
     <div classname="leftpanel-wrapper">
-      <div classname="leftpanel-header">
-        <Header />
-      </div>
+      <div classname="leftpanel-header">{/* <Header /> */}</div>
       <div className="leftpanel">
         <div className="steps-container">
           {/* steg 1 */}
