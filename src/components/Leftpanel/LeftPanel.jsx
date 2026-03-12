@@ -9,8 +9,9 @@ import { TbCircleNumber1 } from "react-icons/tb";
 import { TbCircleNumber2 } from "react-icons/tb";
 import { TbCircleNumber3 } from "react-icons/tb";
 import { TbCircleNumber4 } from "react-icons/tb";
-import { FaLongArrowAltRight } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import { PiSealCheckBold } from "react-icons/pi";
+import { useState } from "react";
 
 const LeftPanel = ({
   currentStep,
@@ -20,6 +21,8 @@ const LeftPanel = ({
   finalized,
   setFinalized,
 }) => {
+  // Håller koll på vilka steg som är "avklarade" (när användaren tryckt Nästa)
+  const [completedSteps, setCompletedSteps] = useState([]);
   // helper to check if a given step's required fields are filled
   const isStepComplete = (step) => {
     switch (step) {
@@ -52,6 +55,11 @@ const LeftPanel = ({
     }
   };
 
+  // Hjälpfunktion för att markera ett steg som klart när man går vidare
+  const markStepComplete = (step) => {
+    setCompletedSteps((prev) => (prev.includes(step) ? prev : [...prev, step]));
+  };
+
   return (
     <div className="leftpanel-wrapper">
       <div className="leftpanel-header">
@@ -65,7 +73,7 @@ const LeftPanel = ({
             onClick={() => handleStepClick(1)}
           >
             <div className="step-heading">
-              {isStepComplete(1) ? (
+              {completedSteps.includes(1) ? (
                 <PiSealCheckBold className="step-icon completed" />
               ) : (
                 <TbCircleNumber1 className="step-icon" />
@@ -82,10 +90,13 @@ const LeftPanel = ({
                     disabled={!canGoNext}
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (canGoNext) setCurrentStep(2);
+                      if (canGoNext) {
+                        markStepComplete(1);
+                        setCurrentStep(2);
+                      }
                     }}
                   >
-                    Nästa steg <FaLongArrowAltRight />
+                    Nästa steg <FaArrowRight />
                   </button>
                 </div>
               </>
@@ -97,7 +108,7 @@ const LeftPanel = ({
             onClick={() => handleStepClick(2)}
           >
             <div className="step-heading">
-              {isStepComplete(2) ? (
+              {completedSteps.includes(2) ? (
                 <PiSealCheckBold className="step-icon completed" />
               ) : (
                 <TbCircleNumber2 className="step-icon" />
@@ -114,10 +125,13 @@ const LeftPanel = ({
                     disabled={!canGoNext}
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (canGoNext) setCurrentStep(3);
+                      if (canGoNext) {
+                        markStepComplete(2);
+                        setCurrentStep(3);
+                      }
                     }}
                   >
-                    Nästa steg <FaLongArrowAltRight />
+                    Nästa steg <FaArrowRight />
                   </button>
                 </div>
               </>
@@ -129,7 +143,7 @@ const LeftPanel = ({
             onClick={() => handleStepClick(3)}
           >
             <div className="step-heading">
-              {isStepComplete(3) ? (
+              {completedSteps.includes(3) ? (
                 <PiSealCheckBold className="step-icon completed" />
               ) : (
                 <TbCircleNumber3 className="step-icon" />
@@ -146,10 +160,13 @@ const LeftPanel = ({
                     disabled={!canGoNext}
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (canGoNext) setCurrentStep(4);
+                      if (canGoNext) {
+                        markStepComplete(3);
+                        setCurrentStep(4);
+                      }
                     }}
                   >
-                    Nästa steg <FaLongArrowAltRight />
+                    Nästa steg <FaArrowRight />
                   </button>
                 </div>
               </>
@@ -157,11 +174,11 @@ const LeftPanel = ({
           </div>
           {/* steg 4 */}
           <div
-            className={`step-card ${currentStep === 4 && !finalized ? "active" : "collapsed"} ${4 > currentStep && !allComplete ? "disabled" : ""}`}
+            className={`step-card ${currentStep === 4 ? "active" : "collapsed"} ${4 > currentStep && !allComplete ? "disabled" : ""}`}
             onClick={() => handleStepClick(4)}
           >
             <div className="step-heading">
-              {isStepComplete(4) ? (
+              {completedSteps.includes(4) ? (
                 <PiSealCheckBold className="step-icon completed" />
               ) : (
                 <TbCircleNumber4 className="step-icon" />
@@ -169,17 +186,20 @@ const LeftPanel = ({
               <h2>Effekt</h2>
             </div>
 
-            {currentStep === 4 && !finalized && (
+            {currentStep === 4 && (
               <div className="line">
                 <Step4
                   formData={formData}
                   setFormData={setFormData}
                   finalized={finalized}
-                  setFinalized={setFinalized}
+                  setFinalized={(val) => {
+                    setFinalized(val);
+                    if (val) markStepComplete(4);
+                  }}
                 />
               </div>
             )}
-          </div>{" "}
+          </div>
           {/* end step-card */}
         </div>{" "}
         {/* end steps-container */}

@@ -1,3 +1,4 @@
+import { IoIosArrowDown } from "react-icons/io";
 import styles from "./Step3.module.css";
 
 const Step3 = ({ formData, setFormData }) => {
@@ -12,19 +13,77 @@ const Step3 = ({ formData, setFormData }) => {
       />
 
       <label>Vilken målgrupp gäller?</label>
-      <select
-        value={formData.target}
-        onChange={(e) => setFormData({ ...formData, target: e.target.value })}
-      >
-        <option value="Alla användare">Alla användare</option>
-      </select>
+      <div className={styles.selectWrapper}>
+        <select
+          value={formData.target}
+          onChange={(e) =>
+            setFormData({
+              ...formData,
+              target: e.target.value,
+              targetCustom: "",
+            })
+          }
+        >
+          <option value="Alla användare">Alla användare</option>
+          <option value="Nya användare">Nya användare</option>
+          <option value="Återkommande användare">Återkommande användare</option>
+          <option value="Mobila användare">Mobila användare</option>
+          <option value="Desktop-användare">Desktop-användare</option>
+          <option value="Kunder med rabattkod">Kunder med rabattkod</option>
+          <option value="Besökare från kampanj">Besökare från kampanj</option>
+          <option value="Annat">Annat</option>
+        </select>
+        <span className={styles.selectIcon}>
+          <IoIosArrowDown />
+        </span>
+      </div>
+      {formData.target === "Annat" && (
+        <>
+          <label>Beskriv målgrupp</label>
+          <textarea
+            value={formData.targetCustom || ""}
+            onChange={(e) =>
+              setFormData({ ...formData, targetCustom: e.target.value })
+            }
+            placeholder="Ange egen målgrupp"
+            rows={2}
+          />
+        </>
+      )}
       <label>Var sker förändringen?</label>
-      <select
-        value={formData.where}
-        onChange={(e) => setFormData({ ...formData, where: e.target.value })}
-      >
-        <option value="Startsida">Startsida</option>
-      </select>
+      <div className={styles.selectWrapper}>
+        <select
+          value={formData.where}
+          onChange={(e) =>
+            setFormData({ ...formData, where: e.target.value, whereCustom: "" })
+          }
+        >
+          <option value="Startsida">Startsida</option>
+          <option value="Produktlista">Produktlista</option>
+          <option value="Produktsida">Produktsida</option>
+          <option value="Kassan">Kassan</option>
+          <option value="Tack-sida">Tack-sida</option>
+          <option value="Kundvagn">Kundvagn</option>
+          <option value="Kampanjsida">Kampanjsida</option>
+          <option value="Annat">Annat</option>
+        </select>
+        <span className={styles.selectIcon}>
+          <IoIosArrowDown />
+        </span>
+      </div>
+      {formData.where === "Annat" && (
+        <>
+          <label>Beskriv plats</label>
+          <textarea
+            value={formData.whereCustom || ""}
+            onChange={(e) =>
+              setFormData({ ...formData, whereCustom: e.target.value })
+            }
+            placeholder="Ange egen plats"
+            rows={2}
+          />
+        </>
+      )}
     </div>
   );
 };

@@ -1,3 +1,43 @@
+/* Custom select wrapper för pil-ikon */
+.selectWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 16px;
+  color: white;
+  width: 100%;
+  padding: 10px 40px 10px 16px;
+  border-radius: 6px;
+  border: none;
+}
+
+.selectIcon {
+  position: absolute;
+  right: 16px;
+  pointer-events: none;
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+textarea {
+  color: #000 !important;
+}
+input {
+  color: #000 !important;
+}
+input {
+  color: #000;
+}
 .steps {
 }
 
@@ -22,6 +62,7 @@ textarea {
   padding: 18px;
   color: white;
   border-radius: 6px;
+  resize: none;
 }
 
 select {
@@ -29,8 +70,9 @@ select {
   font-size: 16px;
   color: white;
   width: 100%;
-  padding: 10px 16px;
+  padding: 10px 18px;
   border-radius: 6px;
+  padding-left: 18px;
 }
 
 textarea::placeholder,

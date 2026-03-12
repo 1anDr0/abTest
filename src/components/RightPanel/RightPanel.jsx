@@ -55,8 +55,19 @@ export default function RightPanel({ currentStep, formData, finalized }) {
                   {formData.change ||
                     "ändra CTA-texten från “Slutför köp” till “Få din beställning idag"}
                 </b>{" "}
-                för <b>{formData.target || ""}</b> på{" "}
-                <b>{formData.where || ""}</b>.
+                för{" "}
+                <b>
+                  {formData.target === "Annat"
+                    ? formData.targetCustom || "Annat"
+                    : formData.target || ""}
+                </b>{" "}
+                på{" "}
+                <b>
+                  {formData.where === "Annat"
+                    ? formData.whereCustom || "Annat"
+                    : formData.where || ""}
+                </b>
+                .
               </p>
             </div>
 
@@ -69,7 +80,12 @@ export default function RightPanel({ currentStep, formData, finalized }) {
                 {formData.direction === "decrease" && (
                   <span className="direction-text">minska</span>
                 )}
-                <b>{formData.effect || "Klickfrekvensen"}</b>.
+                <b>
+                  {formData.effect === "Annat"
+                    ? formData.effectCustom || "Annat"
+                    : formData.effect || "Klickfrekvensen"}
+                </b>
+                .
               </p>
             </div>
           </div>

@@ -1,3 +1,6 @@
+input {
+  color: #000;
+}
 .steps {
 }
 
@@ -22,6 +25,7 @@ textarea {
   padding: 18px;
   color: white;
   border-radius: 6px;
+  resize: none;
 }
 
 select {
@@ -29,8 +33,9 @@ select {
   font-size: 16px;
   color: white;
   width: 100%;
-  padding: 10px 16px;
+  padding: 10px 18px;
   border-radius: 6px;
+  padding-left: 18px;
 }
 
 textarea::placeholder,
