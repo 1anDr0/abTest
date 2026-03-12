@@ -20,7 +20,7 @@ const Step1 = ({ formData, setFormData }) => {
           setFormData({ ...formData, observation: e.target.value })
         }
         placeholder="Exempel: 25% av användare inte klickar på CTA-knappen"
-        rows={4}
+        rows={2}
       />
 
       <label>Hur vet ni det?</label>
@@ -42,7 +42,7 @@ const Step1 = ({ formData, setFormData }) => {
               setFormData({ ...formData, evidenceCustom: e.target.value })
             }
             placeholder="Skriv egen källa..."
-            rows={3}
+            rows={2}
           />
         </>
       )}

@@ -42,7 +42,7 @@ export default function RightPanel({ currentStep, formData, finalized }) {
                 Detta tyder på att{" "}
                 <b>
                   {formData.problem ||
-                    "användare missar knappen eller inte förstår vad nästa steg är"}
+                    "Användare uppfattar inte CTA:n som relevant eller värdefull i första intrycket"}
                 </b>
                 .
               </p>
