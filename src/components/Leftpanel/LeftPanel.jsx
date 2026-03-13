@@ -27,20 +27,48 @@ const LeftPanel = ({
   const isStepComplete = (step) => {
     switch (step) {
       case 1:
-        return formData.observation && formData.observation.trim() !== "";
+        const hasObservation =
+          formData.observation && formData.observation.trim() !== "";
+        const hasEvidence =
+          formData.evidence &&
+          formData.evidence !== "" &&
+          formData.evidence !== "Välj källa";
+        const needsCustom = formData.evidence === "Annat";
+        const hasCustom =
+          !needsCustom ||
+          (formData.evidenceCustom && formData.evidenceCustom.trim() !== "");
+        return hasObservation && hasEvidence && hasCustom;
       case 2:
         return formData.problem && formData.problem.trim() !== "";
       case 3:
+        const hasChange = formData.change && formData.change.trim() !== "";
+        const hasTarget = formData.target && formData.target !== "";
+        const needsTargetCustom = formData.target === "Annat";
+        const hasTargetCustom =
+          !needsTargetCustom ||
+          (formData.targetCustom && formData.targetCustom.trim() !== "");
+        const hasWhere = formData.where && formData.where !== "";
+        const needsWhereCustom = formData.where === "Annat";
+        const hasWhereCustom =
+          !needsWhereCustom ||
+          (formData.whereCustom && formData.whereCustom.trim() !== "");
         return (
-          formData.change &&
-          formData.change.trim() !== "" &&
-          formData.target &&
-          formData.target.trim() !== "" &&
-          formData.where &&
-          formData.where.trim() !== ""
+          hasChange &&
+          hasTarget &&
+          hasTargetCustom &&
+          hasWhere &&
+          hasWhereCustom
         );
       case 4:
-        return formData.effect && formData.effect.trim() !== "";
+        const hasEffect =
+          formData.effect &&
+          formData.effect !== "" &&
+          formData.effect !== "Klickfrekvensen";
+        const needsEffectCustom = formData.effect === "Annat";
+        const hasEffectCustom =
+          !needsEffectCustom ||
+          (formData.effectCustom && formData.effectCustom.trim() !== "");
+        return hasEffect && hasEffectCustom;
       default:
         return false;
     }

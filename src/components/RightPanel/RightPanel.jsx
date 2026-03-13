@@ -83,7 +83,7 @@ export default function RightPanel({ currentStep, formData, finalized }) {
                 <b>
                   {formData.effect === "Annat"
                     ? formData.effectCustom || "Annat"
-                    : formData.effect || "Klickfrekvensen"}
+                    : formData.effect || ""}
                 </b>
                 .
               </p>

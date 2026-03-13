@@ -24,6 +24,7 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
             })
           }
         >
+          <option value="">Välj KPI/effekt</option>
           <option value="Klickfrekvensen">Klickfrekvensen</option>
           <option value="Konverteringsgrad">Konverteringsgrad</option>
           <option value="Genomsnittligt ordervärde">
@@ -82,7 +83,7 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
 
       <button
         className={styles.finishBtn}
-        disabled={finalized}
+        disabled={finalized || !(formData.effect && formData.effect !== "")}
         onClick={handleFinish}
       >
         {finalized ? "Hypotes slutförd" : "Slutför hypotes"}

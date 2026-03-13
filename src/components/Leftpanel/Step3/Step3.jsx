@@ -24,6 +24,7 @@ const Step3 = ({ formData, setFormData }) => {
             })
           }
         >
+          <option value="">Välj målgrupp</option>
           <option value="Alla användare">Alla användare</option>
           <option value="Nya användare">Nya användare</option>
           <option value="Återkommande användare">Återkommande användare</option>
@@ -58,6 +59,7 @@ const Step3 = ({ formData, setFormData }) => {
             setFormData({ ...formData, where: e.target.value, whereCustom: "" })
           }
         >
+          <option value="">Välj plats på sidan</option>
           <option value="Startsida">Startsida</option>
           <option value="Produktlista">Produktlista</option>
           <option value="Produktsida">Produktsida</option>

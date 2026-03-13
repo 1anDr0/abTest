@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./HypotesBuilder.css";
 import LeftPanel from "../Leftpanel/LeftPanel";
 import RightPanel from "../RightPanel/RightPanel";
-import Header from "../Leftpanel/Header/Header";
 
 const HypotesBuilder = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -13,7 +12,7 @@ const HypotesBuilder = () => {
   const [formData, setFormData] = useState({
     // Steg 1
     observation: "",
-    evidence: "Användartester",
+    evidence: "Välj källa",
     evidenceCustom: "",
 
     //Steg 2
@@ -21,8 +20,8 @@ const HypotesBuilder = () => {
 
     //Steg 3
     change: "",
-    target: "Alla användare",
-    where: "Startsida",
+    target: "",
+    where: "",
 
     //Steg 4
     // effect starts empty so the user must actively choose it

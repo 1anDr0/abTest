@@ -27,6 +27,7 @@ const Step1 = ({ formData, setFormData }) => {
       <label>Hur vet ni det?</label>
       <div className={styles.selectWrapper}>
         <select value={formData.evidence} onChange={handleEvidenceChange}>
+          <option value="">Välj källa</option>
           <option value="Användartester">Användartester</option>
           <option value="Hotjar heatmaps">Hotjar heatmaps</option>
           <option value="Session recordings">Session recordings</option>
