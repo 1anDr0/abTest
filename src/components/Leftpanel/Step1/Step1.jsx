@@ -4,7 +4,6 @@ import { IoIosArrowDown } from "react-icons/io";
 const Step1 = ({ formData, setFormData }) => {
   const handleEvidenceChange = (e) => {
     const value = e.target.value;
-
     setFormData({
       ...formData,
       evidence: value,
@@ -18,7 +17,11 @@ const Step1 = ({ formData, setFormData }) => {
       <textarea
         value={formData.observation}
         onChange={(e) =>
-          setFormData({ ...formData, observation: e.target.value })
+          setFormData({
+            ...formData,
+            observation:
+              e.target.value.charAt(0).toLowerCase() + e.target.value.slice(1),
+          })
         }
         placeholder="Exempel: 25% av användare inte klickar på CTA-knappen"
         rows={2}
@@ -54,7 +57,12 @@ const Step1 = ({ formData, setFormData }) => {
           <textarea
             value={formData.evidenceCustom || ""}
             onChange={(e) =>
-              setFormData({ ...formData, evidenceCustom: e.target.value })
+              setFormData({
+                ...formData,
+                evidenceCustom:
+                  e.target.value.charAt(0).toLowerCase() +
+                  e.target.value.slice(1),
+              })
             }
             placeholder="Skriv egen källa..."
             rows={2}

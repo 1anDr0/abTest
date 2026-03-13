@@ -20,12 +20,12 @@ const HypotesBuilder = () => {
 
     //Steg 3
     change: "",
-    target: "",
-    where: "",
+    target: "Välj Målgrupp",
+    where: "Plats på sida",
 
     //Steg 4
     // effect starts empty so the user must actively choose it
-    effect: "",
+    effect: "Vilken effekt",
     // default direction set to "increase" so the Öka radio is preselected
     direction: "increase",
   });

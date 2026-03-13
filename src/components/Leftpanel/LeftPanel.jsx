@@ -29,11 +29,10 @@ const LeftPanel = ({
       case 1:
         const hasObservation =
           formData.observation && formData.observation.trim() !== "";
+        const evidenceValue = (formData.evidence || "").toLowerCase();
         const hasEvidence =
-          formData.evidence &&
-          formData.evidence !== "" &&
-          formData.evidence !== "Välj källa";
-        const needsCustom = formData.evidence === "Annat";
+          evidenceValue !== "" && evidenceValue !== "välj källa";
+        const needsCustom = evidenceValue === "annat";
         const hasCustom =
           !needsCustom ||
           (formData.evidenceCustom && formData.evidenceCustom.trim() !== "");
@@ -42,13 +41,16 @@ const LeftPanel = ({
         return formData.problem && formData.problem.trim() !== "";
       case 3:
         const hasChange = formData.change && formData.change.trim() !== "";
-        const hasTarget = formData.target && formData.target !== "";
-        const needsTargetCustom = formData.target === "Annat";
+        const targetValue = (formData.target || "").toLowerCase();
+        const hasTarget = targetValue !== "" && targetValue !== "välj målgrupp";
+        const needsTargetCustom = targetValue === "annat";
         const hasTargetCustom =
           !needsTargetCustom ||
           (formData.targetCustom && formData.targetCustom.trim() !== "");
-        const hasWhere = formData.where && formData.where !== "";
-        const needsWhereCustom = formData.where === "Annat";
+        const whereValue = (formData.where || "").toLowerCase();
+        const hasWhere =
+          whereValue !== "" && whereValue !== "välj plats på sidan";
+        const needsWhereCustom = whereValue === "annat";
         const hasWhereCustom =
           !needsWhereCustom ||
           (formData.whereCustom && formData.whereCustom.trim() !== "");
@@ -60,11 +62,10 @@ const LeftPanel = ({
           hasWhereCustom
         );
       case 4:
+        const effectValue = (formData.effect || "").toLowerCase();
         const hasEffect =
-          formData.effect &&
-          formData.effect !== "" &&
-          formData.effect !== "Klickfrekvensen";
-        const needsEffectCustom = formData.effect === "Annat";
+          effectValue !== "" && effectValue !== "välj kpi/effekt";
+        const needsEffectCustom = effectValue === "annat";
         const hasEffectCustom =
           !needsEffectCustom ||
           (formData.effectCustom && formData.effectCustom.trim() !== "");

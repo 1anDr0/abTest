@@ -16,13 +16,14 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
       <div className={styles.selectWrapper}>
         <select
           value={formData.effect}
-          onChange={(e) =>
+          onChange={(e) => {
+            const value = e.target.value;
             setFormData({
               ...formData,
-              effect: e.target.value,
+              effect: value,
               effectCustom: "",
-            })
-          }
+            });
+          }}
         >
           <option value="">Välj KPI/effekt</option>
           <option value="Klickfrekvensen">Klickfrekvensen</option>
@@ -45,7 +46,12 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
           <textarea
             value={formData.effectCustom || ""}
             onChange={(e) =>
-              setFormData({ ...formData, effectCustom: e.target.value })
+              setFormData({
+                ...formData,
+                effectCustom:
+                  e.target.value.charAt(0).toLowerCase() +
+                  e.target.value.slice(1),
+              })
             }
             placeholder="Ange egen KPI/effekt"
             rows={2}
@@ -83,7 +89,14 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
 
       <button
         className={styles.finishBtn}
-        disabled={finalized || !(formData.effect && formData.effect !== "")}
+        disabled={
+          finalized ||
+          !formData.effect ||
+          formData.effect === "" ||
+          formData.effect === "Välj KPI/effekt" ||
+          (formData.effect === "Annat" &&
+            (!formData.effectCustom || formData.effectCustom.trim() === ""))
+        }
         onClick={handleFinish}
       >
         {finalized ? "Hypotes slutförd" : "Slutför hypotes"}

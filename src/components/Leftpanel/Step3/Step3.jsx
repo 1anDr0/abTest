@@ -7,8 +7,14 @@ const Step3 = ({ formData, setFormData }) => {
       <label>Beskriv förändring</label>
       <textarea
         value={formData.change}
-        onChange={(e) => setFormData({ ...formData, change: e.target.value })}
-        placeholder="Exempel: ändra CTA-texten från “Slutför köp” till “Få din beställning idag"
+        onChange={(e) =>
+          setFormData({
+            ...formData,
+            change:
+              e.target.value.charAt(0).toLowerCase() + e.target.value.slice(1),
+          })
+        }
+        placeholder="Exempel: ändra CTA-texten från “Slutför köp” till “Få din beställning idag”"
         rows={4}
       />
 
@@ -16,13 +22,14 @@ const Step3 = ({ formData, setFormData }) => {
       <div className={styles.selectWrapper}>
         <select
           value={formData.target}
-          onChange={(e) =>
+          onChange={(e) => {
+            const value = e.target.value;
             setFormData({
               ...formData,
-              target: e.target.value,
+              target: value,
               targetCustom: "",
-            })
-          }
+            });
+          }}
         >
           <option value="">Välj målgrupp</option>
           <option value="Alla användare">Alla användare</option>
@@ -44,7 +51,12 @@ const Step3 = ({ formData, setFormData }) => {
           <textarea
             value={formData.targetCustom || ""}
             onChange={(e) =>
-              setFormData({ ...formData, targetCustom: e.target.value })
+              setFormData({
+                ...formData,
+                targetCustom:
+                  e.target.value.charAt(0).toLowerCase() +
+                  e.target.value.slice(1),
+              })
             }
             placeholder="Ange egen målgrupp"
             rows={2}
@@ -55,9 +67,14 @@ const Step3 = ({ formData, setFormData }) => {
       <div className={styles.selectWrapper}>
         <select
           value={formData.where}
-          onChange={(e) =>
-            setFormData({ ...formData, where: e.target.value, whereCustom: "" })
-          }
+          onChange={(e) => {
+            const value = e.target.value;
+            setFormData({
+              ...formData,
+              where: value,
+              whereCustom: "",
+            });
+          }}
         >
           <option value="">Välj plats på sidan</option>
           <option value="Startsida">Startsida</option>
@@ -79,7 +96,12 @@ const Step3 = ({ formData, setFormData }) => {
           <textarea
             value={formData.whereCustom || ""}
             onChange={(e) =>
-              setFormData({ ...formData, whereCustom: e.target.value })
+              setFormData({
+                ...formData,
+                whereCustom:
+                  e.target.value.charAt(0).toLowerCase() +
+                  e.target.value.slice(1),
+              })
             }
             placeholder="Ange egen plats"
             rows={2}

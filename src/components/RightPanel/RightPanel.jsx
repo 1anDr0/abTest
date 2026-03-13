@@ -31,7 +31,10 @@ export default function RightPanel({ currentStep, formData, finalized }) {
                   {" "}
                   {formData.evidence === "Annat"
                     ? formData.evidenceCustom || "egen källa"
-                    : formData.evidence || ""}
+                    : formData.evidence
+                      ? formData.evidence.charAt(0).toLowerCase() +
+                        formData.evidence.slice(1)
+                      : ""}
                 </b>
                 .
               </p>
@@ -59,13 +62,19 @@ export default function RightPanel({ currentStep, formData, finalized }) {
                 <b>
                   {formData.target === "Annat"
                     ? formData.targetCustom || "Annat"
-                    : formData.target || ""}
+                    : formData.target
+                      ? formData.target.charAt(0).toLowerCase() +
+                        formData.target.slice(1)
+                      : ""}
                 </b>{" "}
                 på{" "}
                 <b>
                   {formData.where === "Annat"
                     ? formData.whereCustom || "Annat"
-                    : formData.where || ""}
+                    : formData.where
+                      ? formData.where.charAt(0).toLowerCase() +
+                        formData.where.slice(1)
+                      : ""}
                 </b>
                 .
               </p>
@@ -83,7 +92,10 @@ export default function RightPanel({ currentStep, formData, finalized }) {
                 <b>
                   {formData.effect === "Annat"
                     ? formData.effectCustom || "Annat"
-                    : formData.effect || ""}
+                    : formData.effect
+                      ? formData.effect.charAt(0).toLowerCase() +
+                        formData.effect.slice(1)
+                      : ""}
                 </b>
                 .
               </p>
