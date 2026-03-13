@@ -1,7 +1,7 @@
 /* basic layout for right panel container */
 .rightpanel-container {
   /* purple/grey tone requested */
-  padding: 0px 30px;
+  padding: 0 5%;
   display: flex;
   flex-direction: column;
   justify-content: center; /* vertically center hypothesis wrapper */
@@ -22,14 +22,14 @@
 /* actual white card holding the hypothesis content */
 .hypothesis-box {
   background: #ffffff;
-  padding: 6px 40px 86px 40px;
+  padding: 1% 8% 12% 8%;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .rightpanel-container h3 {
   margin-top: 0px;
-  margin-bottom: 86px;
+  margin-bottom: 12%;
   font-size: 14px;
   text-align: center;
   font-weight: 800;

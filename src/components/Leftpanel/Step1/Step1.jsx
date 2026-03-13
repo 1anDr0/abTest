@@ -1,5 +1,6 @@
 import styles from "./Step1.module.css";
 import { IoIosArrowDown } from "react-icons/io";
+import { FaRegQuestionCircle } from "react-icons/fa";
 
 const Step1 = ({ formData, setFormData }) => {
   const handleEvidenceChange = (e) => {
@@ -13,7 +14,9 @@ const Step1 = ({ formData, setFormData }) => {
 
   return (
     <div className={styles.steps}>
-      <label>Vad har ni observerat?</label>
+      <label>
+        Vad har ni observerat? <FaRegQuestionCircle />
+      </label>
       <textarea
         value={formData.observation}
         onChange={(e) =>
@@ -26,8 +29,9 @@ const Step1 = ({ formData, setFormData }) => {
         placeholder="Exempel: 25% av användare inte klickar på CTA-knappen"
         rows={2}
       />
-
-      <label>Hur vet ni det?</label>
+      <label>
+        Hur vet ni det? <FaRegQuestionCircle />
+      </label>
       <div className={styles.selectWrapper}>
         <select value={formData.evidence} onChange={handleEvidenceChange}>
           <option value="">Välj källa</option>
@@ -50,7 +54,6 @@ const Step1 = ({ formData, setFormData }) => {
           <IoIosArrowDown />
         </span>
       </div>
-
       {formData.evidence === "Annat" && (
         <>
           <label>Beskriv källa</label>

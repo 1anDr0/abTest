@@ -1,17 +1,11 @@
-.header {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 700;
-  color: white;
-  margin-bottom: 8px;
-}
-
 .header h2 {
+  font-size: 18px;
   margin-bottom: 8px;
 }
 
 .header p {
   font-size: 16px;
   color: rgba(255, 255, 255, 0.5);
-  font-weight: 400;
+  font-weight: 300;
+  line-height: 1.3rem;
 }
