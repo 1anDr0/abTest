@@ -1,3 +1,35 @@
+.radioLabel svg {
+  font-size: 28px !important;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.finishBtn {
+  margin-top: 18px;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 18px;
+  border: none;
+  background: linear-gradient(135deg, #22d3ee, #6366f1);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(34, 211, 238, 0.18);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+.finishBtn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
 /* Flexrad för label + ikon */
 .labelRow {
   display: flex;
@@ -9,20 +41,23 @@
 
 .labelNoMargin {
   margin: 0;
-  color: white;
-  font-size: 14px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 15px;
+  font-weight: 500;
 }
 
+select option {
+  background: #f8fafc;
+  color: #111827;
+}
 /* Tooltip för frågetecken */
 .tooltipWrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
-  margin-left: 6px;
-  vertical-align: middle;
-  color: #1c82ad;
+  color: #22d3ee;
+  cursor: pointer;
 }
-
 .tooltipText {
   visibility: hidden;
   width: 220px;
@@ -55,19 +90,6 @@
   align-items: center;
 }
 
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: rgba(255, 255, 255, 0.5);
-  font-size: 14px;
-  color: white;
-  width: 100%;
-  padding: 10px 40px 10px 16px;
-  border-radius: 12px;
-  border: none;
-}
-
 .selectIcon {
   position: absolute;
   right: 10px;
@@ -77,32 +99,6 @@ select {
   display: flex;
   align-items: center;
   height: 100%;
-}
-input {
-  color: #000 !important;
-}
-input {
-  color: #000;
-}
-.steps {
-}
-
-label {
-  color: white;
-  display: block;
-  margin-bottom: 0.5rem;
-  margin-top: 20px;
-}
-
-textarea {
-  display: block;
-  width: 100%;
-  font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 18px;
-  color: white;
-  border-radius: 6px;
-  resize: none;
 }
 
 .radioGroup {
@@ -121,30 +117,35 @@ textarea {
 .radioLabel input {
   accent-color: #3ec858; /* green tick */
 }
-textarea::placeholder,
-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 14px;
-  font-style: italic;
-}
 
 .finishBtn {
-  margin-top: 14px;
+  margin-top: 18px;
   width: 100%;
-  padding: 12px;
-  background: #00337c;
-  border-radius: 6px;
-  color: white;
-  font-size: 14px;
-  cursor: pointer;
-  box-shadow: none;
+  min-height: 48px;
+  padding: 12px 18px;
   border: none;
+  background: linear-gradient(135deg, #22d3ee, #6366f1);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(34, 211, 238, 0.18);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 .finishBtn:hover {
-  background: rgb(0, 47, 255);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(34, 211, 238, 0.22);
 }
 .finishBtn:disabled {
-  opacity: 0.5;
+  opacity: 0.38;
   cursor: not-allowed;
-  pointer-events: none;
+  box-shadow: none;
 }

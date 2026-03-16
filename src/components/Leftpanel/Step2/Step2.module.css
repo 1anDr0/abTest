@@ -1,33 +1,5 @@
 /* Unika Step2-stilar här */
 
-textarea {
-  display: block;
-  width: 100%;
-  font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 18px;
-  color: white;
-  border-radius: 6px;
-  resize: none;
-}
-
-select {
-  background-color: rgba(255, 255, 255, 0.5);
-  font-size: 14px;
-  color: white;
-  width: 100%;
-  padding: 10px 18px;
-  border-radius: 12px;
-  padding-left: 18px;
-}
-
-textarea::placeholder,
-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 14px;
-  font-style: italic;
-}
-
 .labelRow {
   display: flex;
   justify-content: space-between;
@@ -38,15 +10,17 @@ input::placeholder {
 
 .labelNoMargin {
   margin: 0;
-  color: white;
-  font-size: 14px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .tooltipWrapper {
   position: relative;
   display: inline-flex;
-  align-items: flex-end;
-  color: #1c82ad;
+  align-items: center;
+  color: #22d3ee;
+  cursor: pointer;
 }
 
 .tooltipText {

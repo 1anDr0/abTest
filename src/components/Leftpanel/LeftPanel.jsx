@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./Leftpanel.css";
 import Step1 from "./Step1/Step1";
 import Step2 from "./Step2/Step2";
@@ -23,6 +24,13 @@ const LeftPanel = ({
 }) => {
   // Håller koll på vilka steg som är "avklarade" (när användaren tryckt Nästa)
   const [completedSteps, setCompletedSteps] = useState([]);
+
+  // Mark all steps as completed when hypothesis is finalized
+  useEffect(() => {
+    if (finalized) {
+      setCompletedSteps([1, 2, 3, 4]);
+    }
+  }, [finalized]);
   // helper to check if a given step's required fields are filled
   const isStepComplete = (step) => {
     switch (step) {

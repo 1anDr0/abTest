@@ -9,18 +9,17 @@
 
 .labelNoMargin {
   margin: 0;
-  color: white;
-  font-size: 14px;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 15px;
+  font-weight: 500;
 }
-
 /* Tooltip för frågetecken */
 .tooltipWrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
-  margin-left: 6px;
-  vertical-align: middle;
-  color: #1c82ad;
+  color: #22d3ee;
+  cursor: pointer;
 }
 
 .tooltipText {
@@ -55,19 +54,6 @@
   align-items: center;
 }
 
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: rgba(255, 255, 255, 0.5);
-  font-size: 14px;
-  color: white;
-  width: 100%;
-  padding: 10px 40px 10px 16px;
-  border-radius: 12px;
-  border: none;
-}
-
 .selectIcon {
   position: absolute;
   right: 10px;
@@ -77,46 +63,4 @@ select {
   display: flex;
   align-items: center;
   height: 100%;
-}
-textarea {
-  color: #000 !important;
-}
-input {
-  color: #000 !important;
-}
-input {
-  color: #000;
-}
-.steps {
-}
-
-h1 {
-  font-size: 28px;
-  color: white;
-  margin-top: 100px;
-}
-
-label {
-  color: white;
-  display: block;
-  margin-bottom: 0.5rem;
-  margin-top: 20px;
-}
-
-textarea {
-  display: block;
-  width: 100%;
-  font-size: 16px;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 18px;
-  color: white;
-  border-radius: 6px;
-  resize: none;
-}
-
-textarea::placeholder,
-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 14px;
-  font-style: italic;
 }

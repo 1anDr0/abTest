@@ -1,6 +1,6 @@
 .leftpanel-wrapper {
   min-height: 100vh;
-  padding: 0 10% 0 10%;
+  padding: 0 clamp(24px, 7vw, 120px);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -24,24 +24,31 @@
 .steps-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 4px;
 }
 
 .step-card {
   width: 100%;
+  box-sizing: border-box;
+  border-radius: 16px;
+  transition:
+    background 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .step-card.active {
-  padding: 6px 0px 20px 0px;
+  padding: 10px 0 24px 0;
 }
 
 .step-card.collapsed {
-  padding: 6px 0px;
-
+  padding: 10px 0;
   display: flex;
   align-items: center;
-  opacity: 0.4; /* faded look for inactive steps */
-  cursor: pointer; /* make it obvious they are clickable */
+  opacity: 0.5;
+  cursor: pointer;
+  border-radius: 12px;
 }
 
 .step-card.collapsed.disabled {
@@ -50,44 +57,49 @@
 }
 
 .step-card.collapsed:hover {
-  opacity: 0.8;
+  opacity: 0.9;
+  transform: translateX(2px);
 }
 
 /* prevent hover effect on steps that are not clickable */
 .step-card.collapsed.disabled:hover {
   opacity: 0.6;
 }
-
-.step-card {
-  /* border: 1px dashed rgb(255, 255, 255); */
-  width: 100%;
-  box-sizing: border-box;
-}
-
 .step-heading {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .step-icon {
-  font-size: 22px;
+  font-size: 24px;
   flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.step-card.active .step-icon {
+  color: #ffffff;
+  font-size: 26px;
 }
 
 h2 {
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  margin: 0;
 }
 
+/* Always green for completed steps, even when finalized */
 .step-icon.completed {
-  color: #3ec858; /* match green used in right panel */
+  color: #3ec858 !important;
 }
 
 /* Tar bort skugga från next-btn */
 .next-btn {
-  margin-top: 16px;
+  margin-top: 18px;
   width: 100%;
-  padding: 10px 16px;
+  min-height: 48px;
+  padding: 12px 18px;
   border: none;
   background: linear-gradient(135deg, #22d3ee, #6366f1);
   color: white;
@@ -96,19 +108,24 @@ h2 {
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  box-shadow: none;
-  border-radius: 50px;
+  box-shadow: 0 8px 24px rgba(34, 211, 238, 0.18);
+  border-radius: 999px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
-
 .next-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.38;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .next-btn:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(34, 211, 238, 0.22);
 }
 
 .next-arrow {
@@ -124,21 +141,23 @@ h2 {
 
 .line {
   position: relative;
-  /* margin-top: 18px; */
-  /* move line rightwards so it lines up with icon center
-     card padding 16px + half icon width (~15px) = ~31px */
-  margin-left: 10px;
-  padding-left: 30px;
-  /* raise the line so its start meets the icon vertically */
+  margin-left: 12px;
+  padding-left: 32px;
+  margin-top: 12px;
 }
 
 .line::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 2px;
+  top: 4px;
   bottom: 0;
   width: 2px;
-  background: rgba(210, 220, 255, 0.85);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(180, 190, 255, 0.45) 100%
+  );
   border-radius: 999px;
 }
