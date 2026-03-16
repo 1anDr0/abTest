@@ -1,6 +1,7 @@
 import styles from "./Step1.module.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaRegQuestionCircle } from "react-icons/fa";
+import { useRef, useEffect } from "react";
 
 const Step1 = ({ formData, setFormData }) => {
   const handleEvidenceChange = (e) => {
@@ -12,12 +13,27 @@ const Step1 = ({ formData, setFormData }) => {
     });
   };
 
+  const obsRef = useRef(null);
+  useEffect(() => {
+    if (obsRef.current) {
+      obsRef.current.focus();
+    }
+  }, []);
+
   return (
     <div className={styles.steps}>
-      <label>
-        Vad har ni observerat? <FaRegQuestionCircle />
-      </label>
+      <div className={styles.labelRow}>
+        <label className={styles.labelNoMargin}>Vad har ni observerat?</label>
+        <span className={styles.tooltipWrapper}>
+          <FaRegQuestionCircle />
+          <span className={styles.tooltipText}>
+            Beskriv något ni har observerat i data eller användarbeteende.
+            Undvik tolkningar – skriv bara vad som händer.
+          </span>
+        </span>
+      </div>
       <textarea
+        ref={obsRef}
         value={formData.observation}
         onChange={(e) =>
           setFormData({
@@ -29,9 +45,15 @@ const Step1 = ({ formData, setFormData }) => {
         placeholder="Exempel: 25% av användare inte klickar på CTA-knappen"
         rows={2}
       />
-      <label>
-        Hur vet ni det? <FaRegQuestionCircle />
-      </label>
+      <div className={styles.labelRow}>
+        <label className={styles.labelNoMargin}>Hur vet ni det?</label>
+        <span className={styles.tooltipWrapper}>
+          <FaRegQuestionCircle />
+          <span className={styles.tooltipText}>
+            Ange vilken källa eller data som stödjer er observation.
+          </span>
+        </span>
+      </div>
       <div className={styles.selectWrapper}>
         <select value={formData.evidence} onChange={handleEvidenceChange}>
           <option value="">Välj källa</option>
@@ -40,13 +62,13 @@ const Step1 = ({ formData, setFormData }) => {
           <option value="Session recordings">Session recordings</option>
           <option value="Intervjuer">Intervjuer</option>
           <option value="Supportärenden">Supportärenden</option>
-          <option value="A/B-testdata">A/B-testdata</option>
-          <option value="CRM-data">CRM-data</option>
+          <option value="a/b-testdata">A/B-testdata</option>
+          <option value="crm-data">CRM-data</option>
           <option value="Feedback från användare">
             Feedback från användare
           </option>
           <option value="Loggfiler">Loggfiler</option>
-          <option value="GA4">Google Analytics (GA4)</option>
+          <option value="Google Analytics (GA4)">Google Analytics (GA4)</option>
           <option value="Enkät">Enkät</option>
           <option value="Annat">Annat</option>
         </select>
@@ -56,7 +78,16 @@ const Step1 = ({ formData, setFormData }) => {
       </div>
       {formData.evidence === "Annat" && (
         <>
-          <label>Beskriv källa</label>
+          <div className={styles.labelRow}>
+            <label className={styles.labelNoMargin}>Beskriv källa</label>
+            <span className={styles.tooltipWrapper}>
+              <FaRegQuestionCircle />
+              <span className={styles.tooltipText}>
+                Här kan du beskriva källan mer i detalj, till exempel ett
+                specifikt verktyg, en rapport eller metod.
+              </span>
+            </span>
+          </div>
           <textarea
             value={formData.evidenceCustom || ""}
             onChange={(e) =>

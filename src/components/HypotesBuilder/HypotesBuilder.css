@@ -4,26 +4,29 @@
   width: 100%;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  width: 100%;
+}
 /* use body background to paint full-width left/right colours */
 html,
 body {
-  height: 100%;
-  margin: 0;
-  background: linear-gradient(
-    to right,
-    #15005f 0%,
-    #05002c 50%,
-    #b8b4c4 50%,
-    #b8b4c4 100%
-  );
+  background: #f6f4fb;
+  font-family: sans-serif;
 }
 
 .page-inner {
-  /* constrain content area while backgrounds flow under it */
-  max-width: 1500px;
-  width: 100%;
-  margin: 0 auto;
   min-height: 100vh;
+  width: 100%;
 }
 
 .layout {
@@ -33,6 +36,31 @@ body {
 }
 
 .leftpanel-container {
-  /* backgrounds handled by body, keep container transparent */
-  background: transparent;
+  background:
+    radial-gradient(
+      circle at 18% 12%,
+      rgba(138, 92, 246, 0.28),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 82% 22%,
+      rgba(34, 211, 238, 0.1),
+      transparent 24%
+    ),
+    linear-gradient(160deg, #12043d 0%, #0d022f 55%, #08021f 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.leftpanel-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  opacity: 0.18;
+  pointer-events: none;
 }

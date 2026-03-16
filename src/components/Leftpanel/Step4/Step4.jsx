@@ -1,18 +1,47 @@
 import { IoIosArrowDown } from "react-icons/io";
+import { FaArrowUp, FaArrowDown, FaRegQuestionCircle } from "react-icons/fa";
 import styles from "./Step4.module.css";
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { useRef, useEffect } from "react";
 
 const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
+  // Kontrollera om en riktig KPI är vald
+  const isKpiSelected =
+    formData.effect &&
+    formData.effect !== "" &&
+    formData.effect !== "Välj KPI/effekt" &&
+    (formData.effect !== "Annat" ||
+      (formData.effectCustom && formData.effectCustom.trim() !== ""));
+
   const complete = formData.effect && formData.effect.trim() !== "";
 
   const handleFinish = () => {
-    // clicking always finalizes, even if effect is blank; keeps logic simple
-    setFinalized(true);
+    if (!isKpiSelected) return; // Förhindra klick om ingen KPI är vald
+    setTimeout(() => {
+      setFinalized(true);
+    }, 200);
   };
+
+  const effectRef = useRef(null);
+  useEffect(() => {
+    if (effectRef.current) {
+      effectRef.current.focus();
+    }
+  }, []);
 
   return (
     <div className={styles.steps}>
-      <label>Vad ska påverkas? (Primär KPI)</label>
+      <div className={styles.labelRow}>
+        <label className={styles.labelNoMargin}>
+          Vad ska påverkas? (Primär KPI)
+        </label>
+        <span className={styles.tooltipWrapper}>
+          <FaRegQuestionCircle />
+          <span className={styles.tooltipText}>
+            Välj vilken KPI (Key Performance Indicator) eller mätbart resultat
+            förändringen ska påverka.
+          </span>
+        </span>
+      </div>
       <div className={styles.selectWrapper}>
         <select
           value={formData.effect}
@@ -42,8 +71,18 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
       </div>
       {formData.effect === "Annat" && (
         <>
-          <label>Beskriv effekt</label>
+          <div className={styles.labelRow}>
+            <label className={styles.labelNoMargin}>Beskriv effekt</label>
+            <span className={styles.tooltipWrapper}>
+              <FaRegQuestionCircle />
+              <span className={styles.tooltipText}>
+                Ange en egen KPI – alltså vilket mätbart resultat ni vill följa,
+                t.ex. antal registreringar eller scroll-djup.
+              </span>
+            </span>
+          </div>
           <textarea
+            ref={effectRef}
             value={formData.effectCustom || ""}
             onChange={(e) =>
               setFormData({
@@ -59,7 +98,17 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
         </>
       )}
 
-      <label>Vad förväntar du dig att förändringen gör med KPI:n?</label>
+      <div className={styles.labelRow}>
+        <label className={styles.labelNoMargin}>
+          Vad förväntar du dig att förändringen gör med KPI:n?
+        </label>
+        <span className={styles.tooltipWrapper}>
+          <FaRegQuestionCircle />
+          <span className={styles.tooltipText}>
+            Välj om du tror att KPI:n kommer att öka eller minska.
+          </span>
+        </span>
+      </div>
       <div className={styles.radioGroup}>
         <label className={styles.radioLabel}>
           <input
@@ -87,20 +136,22 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
         </label>
       </div>
 
-      <button
-        className={styles.finishBtn}
-        disabled={
-          finalized ||
-          !formData.effect ||
-          formData.effect === "" ||
-          formData.effect === "Välj KPI/effekt" ||
-          (formData.effect === "Annat" &&
-            (!formData.effectCustom || formData.effectCustom.trim() === ""))
-        }
-        onClick={handleFinish}
-      >
-        {finalized ? "Hypotes slutförd" : "Slutför hypotes"}
-      </button>
+      {!finalized ? (
+        <button
+          className={styles.finishBtn}
+          disabled={!isKpiSelected}
+          onClick={handleFinish}
+        >
+          Slutför hypotes
+        </button>
+      ) : (
+        <button
+          className={styles.finishBtn}
+          onClick={() => setFinalized(false)}
+        >
+          Redigera hypotes
+        </button>
+      )}
     </div>
   );
 };

@@ -1,6 +1,24 @@
+import React, { useState } from "react";
+import { FaRegCopy } from "react-icons/fa6";
 import "./RightPanel.css";
 
 export default function RightPanel({ currentStep, formData, finalized }) {
+  // State for copy feedback
+  const [copied, setCopied] = useState(false);
+
+  // Compose the hypothesis text for copying
+  const hypothesisText = `Vi har observerat att ${formData.observation || "25% av användare inte klickar på CTA-knappen"}, vilket bekräftas av ${formData.evidence === "Annat" ? formData.evidenceCustom || "egen källa" : formData.evidence ? formData.evidence.charAt(0).toLowerCase() + formData.evidence.slice(1) : ""}.
+      Detta tyder på att ${formData.problem || "Användare uppfattar inte CTA:n som relevant eller värdefull i första intrycket"}.
+      Vi tror därför att om vi ${formData.change || "ändra CTA-texten från “Slutför köp” till “Få din beställning idag"} för ${formData.target === "Annat" ? formData.targetCustom || "ange egen målgrupp" : formData.target ? formData.target.charAt(0).toLowerCase() + formData.target.slice(1) : ""} på ${formData.where === "Annat" ? formData.whereCustom || "ange egen plats" : formData.where ? formData.where.charAt(0).toLowerCase() + formData.where.slice(1) : ""}, kommer att ${formData.direction === "increase" ? "öka" : "minska"} ${formData.effect === "Annat" ? formData.effectCustom || "Annat" : formData.effect ? formData.effect.charAt(0).toLowerCase() + formData.effect.slice(1) : ""}.`;
+
+  // Handle copy to clipboard with delay
+  const handleCopy = () => {
+    setTimeout(() => {
+      navigator.clipboard.writeText(hypothesisText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    }, 200);
+  };
   // derive status for each step: 'completed' (behind current), 'current', or 'inactive'
   const statusFor = (step) => {
     if (currentStep > step) return "completed";
@@ -61,7 +79,7 @@ export default function RightPanel({ currentStep, formData, finalized }) {
                 för{" "}
                 <b>
                   {formData.target === "Annat"
-                    ? formData.targetCustom || "Annat"
+                    ? formData.targetCustom || "ange egen målgrupp"
                     : formData.target
                       ? formData.target.charAt(0).toLowerCase() +
                         formData.target.slice(1)
@@ -70,7 +88,7 @@ export default function RightPanel({ currentStep, formData, finalized }) {
                 på{" "}
                 <b>
                   {formData.where === "Annat"
-                    ? formData.whereCustom || "Annat"
+                    ? formData.whereCustom || "ange egen plats"
                     : formData.where
                       ? formData.where.charAt(0).toLowerCase() +
                         formData.where.slice(1)
@@ -101,6 +119,18 @@ export default function RightPanel({ currentStep, formData, finalized }) {
               </p>
             </div>
           </div>
+          {finalized && (
+            <div className="copy-hypothesis-bottom">
+              <button
+                className="copy-btn"
+                onClick={handleCopy}
+                title={copied ? "Kopierat!" : "Kopiera hypotesen"}
+              >
+                <FaRegCopy />
+              </button>
+              {copied && <span className="copy-feedback">Kopierat!</span>}
+            </div>
+          )}
         </div>
       </div>
     </div>

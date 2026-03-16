@@ -1,10 +1,30 @@
+import { FaRegQuestionCircle } from "react-icons/fa";
 import styles from "./Step2.module.css";
+import { useRef, useEffect } from "react";
 
 const Step2 = ({ formData, setFormData }) => {
+  const problemRef = useRef(null);
+  useEffect(() => {
+    if (problemRef.current) {
+      problemRef.current.focus();
+    }
+  }, []);
+
   return (
     <div className={styles.steps}>
-      <label>Vad är problemet?</label>
+      <div className={styles.labelRow}>
+        <label className={styles.labelNoMargin}>
+          Vad är problemet?
+        </label>
+        <span className={styles.tooltipWrapper}>
+          <FaRegQuestionCircle />
+          <span className={styles.tooltipText}>
+            Formulera vilket problem observationen kan tyda på
+          </span>
+        </span>
+      </div>
       <textarea
+        ref={problemRef}
         value={formData.problem}
         onChange={(e) =>
           setFormData({

@@ -78,7 +78,9 @@ const LeftPanel = ({
   const allComplete = [1, 2, 3, 4].every(isStepComplete);
   const canGoNext = isStepComplete(currentStep);
 
+  // Lås alla steg om hypotesen är färdigställd
   const handleStepClick = (step) => {
+    if (finalized) return;
     if (step <= currentStep || allComplete) {
       setCurrentStep(step);
     }
@@ -91,9 +93,7 @@ const LeftPanel = ({
 
   return (
     <div className="leftpanel-wrapper">
-      <div className="leftpanel-header">
-        <Header />
-      </div>
+      <div className="leftpanel-header">{/* <Header /> */}</div>
       <div className="leftpanel">
         <div className="steps-container">
           {/* steg 1 */}
@@ -121,11 +121,16 @@ const LeftPanel = ({
                       e.stopPropagation();
                       if (canGoNext) {
                         markStepComplete(1);
-                        setCurrentStep(2);
+                        setTimeout(() => {
+                          setCurrentStep(2);
+                        }, 200);
                       }
                     }}
                   >
-                    Nästa steg <FaArrowRight />
+                    Nästa steg{" "}
+                    <span className="next-arrow">
+                      <FaArrowRight />
+                    </span>
                   </button>
                 </div>
               </>
@@ -156,11 +161,16 @@ const LeftPanel = ({
                       e.stopPropagation();
                       if (canGoNext) {
                         markStepComplete(2);
-                        setCurrentStep(3);
+                        setTimeout(() => {
+                          setCurrentStep(3);
+                        }, 200);
                       }
                     }}
                   >
-                    Nästa steg <FaArrowRight />
+                    Nästa steg{" "}
+                    <span className="next-arrow">
+                      <FaArrowRight />
+                    </span>
                   </button>
                 </div>
               </>
@@ -191,11 +201,16 @@ const LeftPanel = ({
                       e.stopPropagation();
                       if (canGoNext) {
                         markStepComplete(3);
-                        setCurrentStep(4);
+                        setTimeout(() => {
+                          setCurrentStep(4);
+                        }, 200);
                       }
                     }}
                   >
-                    Nästa steg <FaArrowRight />
+                    Nästa steg{" "}
+                    <span className="next-arrow">
+                      <FaArrowRight />
+                    </span>
                   </button>
                 </div>
               </>

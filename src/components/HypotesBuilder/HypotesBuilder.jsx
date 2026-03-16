@@ -20,13 +20,12 @@ const HypotesBuilder = () => {
 
     //Steg 3
     change: "",
-    target: "Välj Målgrupp",
-    where: "Plats på sida",
+    target: "Välj målgrupp",
+    where: "Välj plats på sidan",
 
     //Steg 4
-    // effect starts empty so the user must actively choose it
-    effect: "Vilken effekt",
-    // default direction set to "increase" so the Öka radio is preselected
+    effect: "Välj KPI/effekt",
+    // default direction set to "increase" so the Öka radio är preselected
     direction: "increase",
   });
 
@@ -41,7 +40,10 @@ const HypotesBuilder = () => {
               formData={formData}
               setFormData={setFormData}
               finalized={finalized}
-              setFinalized={setFinalized}
+              setFinalized={(val) => {
+                setFinalized(val);
+                if (!val) setCurrentStep(1); // Gå till steg 1 när redigering startas
+              }}
             />
           </div>
           <div className="rightpanel-container">

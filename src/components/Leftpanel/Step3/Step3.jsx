@@ -1,11 +1,30 @@
 import { IoIosArrowDown } from "react-icons/io";
+import { FaRegQuestionCircle } from "react-icons/fa";
 import styles from "./Step3.module.css";
+import { useRef, useEffect } from "react";
 
 const Step3 = ({ formData, setFormData }) => {
+  const changeRef = useRef(null);
+  useEffect(() => {
+    if (changeRef.current) {
+      changeRef.current.focus();
+    }
+  }, []);
+
   return (
     <div className={styles.steps}>
-      <label>Beskriv förändring</label>
+      <div className={styles.labelRow}>
+        <label className={styles.labelNoMargin}>Beskriv förändring</label>
+        <span className={styles.tooltipWrapper}>
+          <FaRegQuestionCircle />
+          <span className={styles.tooltipText}>
+            Beskriv exakt vilken förändring ni vill testa, till exempel text,
+            färg, placering eller funktion.
+          </span>
+        </span>
+      </div>
       <textarea
+        ref={changeRef}
         value={formData.change}
         onChange={(e) =>
           setFormData({
@@ -18,7 +37,15 @@ const Step3 = ({ formData, setFormData }) => {
         rows={4}
       />
 
-      <label>Vilken målgrupp gäller?</label>
+      <div className={styles.labelRow}>
+        <label className={styles.labelNoMargin}>Vilken målgrupp gäller?</label>
+        <span className={styles.tooltipWrapper}>
+          <FaRegQuestionCircle />
+          <span className={styles.tooltipText}>
+            Välj vilken grupp av användare som förändringen ska testas på.
+          </span>
+        </span>
+      </div>
       <div className={styles.selectWrapper}>
         <select
           value={formData.target}
@@ -47,7 +74,16 @@ const Step3 = ({ formData, setFormData }) => {
       </div>
       {formData.target === "Annat" && (
         <>
-          <label>Beskriv målgrupp</label>
+          <div className={styles.labelRow}>
+            <label className={styles.labelNoMargin}>Beskriv målgrupp</label>
+            <span className={styles.tooltipWrapper}>
+              <FaRegQuestionCircle />
+              <span className={styles.tooltipText}>
+                Beskriv den specifika målgruppen, t.ex. "användare som besökt
+                produktsidan mer än 3 gånger".
+              </span>
+            </span>
+          </div>
           <textarea
             value={formData.targetCustom || ""}
             onChange={(e) =>
@@ -63,7 +99,15 @@ const Step3 = ({ formData, setFormData }) => {
           />
         </>
       )}
-      <label>Var sker förändringen?</label>
+      <div className={styles.labelRow}>
+        <label className={styles.labelNoMargin}>Var sker förändringen?</label>
+        <span className={styles.tooltipWrapper}>
+          <FaRegQuestionCircle />
+          <span className={styles.tooltipText}>
+            Ange var på sidan eller i flödet förändringen sker.
+          </span>
+        </span>
+      </div>
       <div className={styles.selectWrapper}>
         <select
           value={formData.where}
@@ -92,7 +136,16 @@ const Step3 = ({ formData, setFormData }) => {
       </div>
       {formData.where === "Annat" && (
         <>
-          <label>Beskriv plats</label>
+          <div className={styles.labelRow}>
+            <label className={styles.labelNoMargin}>Beskriv plats</label>
+            <span className={styles.tooltipWrapper}>
+              <FaRegQuestionCircle />
+              <span className={styles.tooltipText}>
+                Beskriv platsen, t.ex. "överst på produktsidan" eller "i kassan
+                efter adressformuläret".
+              </span>
+            </span>
+          </div>
           <textarea
             value={formData.whereCustom || ""}
             onChange={(e) =>

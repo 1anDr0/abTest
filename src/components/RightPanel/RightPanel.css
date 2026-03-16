@@ -25,12 +25,13 @@
   padding: 1% 8% 12% 8%;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .rightpanel-container h3 {
   margin-top: 0px;
   margin-bottom: 12%;
-  font-size: 14px;
+  font-size: 12px;
   text-align: center;
   font-weight: 800;
 }
@@ -39,7 +40,7 @@
 .hypothesis-steps {
   position: relative;
 
-  line-height: 2em;
+  line-height: 1.5;
 }
 .hypothesis-steps::before {
   display: none; /* colored segments replace the base line */
@@ -83,8 +84,12 @@
   background: #00337c; /* blue line segment */
 }
 
+.hypothesis-box.finalized .hypothesis-step.current::after {
+  background: #3ec858 !important;
+}
+
 .hypothesis-step.inactive {
-  opacity: 0.4;
+  opacity: 0.2;
 }
 
 .direction-text {
@@ -110,7 +115,7 @@
 /* override previous empty file to ensure preexisting styles don't conflict */
 
 p {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: #000000;
 }
@@ -118,4 +123,41 @@ p {
 b {
   font-weight: 400;
   color: #180078b8;
+}
+/* Kopieringsikon längst ner till höger */
+/* Kopieringsikon längst ner till höger */
+.copy-hypothesis-bottom {
+  position: absolute;
+  right: 24px;
+  bottom: 18px;
+  z-index: 2;
+}
+
+/* Only icon, no text */
+.copy-btn {
+  border: none;
+  background: transparent;
+  color: #000000;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.copy-btn:hover {
+  color: #0056b3;
+}
+
+.copy-feedback {
+  position: absolute;
+  bottom: 36px;
+  right: 0;
+  background: #fff;
+  color: black;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
 }
