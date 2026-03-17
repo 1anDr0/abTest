@@ -43,7 +43,7 @@ const Step1 = ({ formData, setFormData }) => {
           })
         }
         placeholder="Exempel: 25% av användare inte klickar på CTA-knappen"
-        rows={2}
+        rows={3}
       />
       <div className={styles.labelRow}>
         <label className={styles.labelNoMargin}>Hur vet ni det?</label>

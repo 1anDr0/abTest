@@ -21,7 +21,7 @@
 .hypothesis-box {
   background: #ffffff;
   padding: 1% 8% 12% 8%;
-  border-radius: 6px;
+  border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
   border: 1px solid rgba(17, 24, 39, 0.05);
@@ -59,7 +59,7 @@
 .hypothesis-step::after {
   content: "";
   position: absolute;
-  left: -8px;
+  left: -4px;
   top: 0;
   bottom: 0;
   width: 4px; /* slightly thicker line */
@@ -79,7 +79,7 @@
 }
 /* no before element for current step */
 .hypothesis-step.current::after {
-  background: #3b82f6;
+  background: #6366f1;
 }
 
 .hypothesis-box.finalized .hypothesis-step.current::after {
@@ -115,14 +115,14 @@
 p {
   font-size: 15px;
   line-height: 1.6;
-  font-weight: 500;
+  font-weight: 00;
   color: #111827;
   margin: 0;
 }
 
 b {
   font-weight: 600;
-  color: #4f46e5;
+  color: #1b0461fb;
 }
 
 .copy-hypothesis-bottom {
@@ -135,12 +135,12 @@ b {
 /* Only icon, no text */
 .copy-btn {
   border: 1px solid #e5e7eb;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.5);
   color: #374151;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 999px;
-  font-size: 18px;
+  font-size: 14px;
   cursor: pointer;
   padding: 0;
   display: flex;

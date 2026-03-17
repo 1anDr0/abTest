@@ -1,17 +1,19 @@
-/* Flexrad för label + ikon */
 .labelRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 4px;
-  margin-top: 12px;
+  padding-top: 1rem;
 }
 
 .labelNoMargin {
   margin: 0;
-  color: rgba(255, 255, 255, 0.95);
-  font-size: 15px;
-  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+label {
+  font-size: 14px;
+  font-weight: 400;
 }
 /* Tooltip för frågetecken */
 .tooltipWrapper {

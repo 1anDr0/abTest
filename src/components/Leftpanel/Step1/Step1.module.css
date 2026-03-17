@@ -3,17 +3,17 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 4px;
-  margin-top: 12px;
+  padding-top: 1rem;
 }
 
 .labelNoMargin {
   margin: 0;
-  color: rgba(255, 255, 255, 0.96);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 label {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /* Tooltip */
@@ -96,7 +96,7 @@ input {
 textarea {
   resize: none;
   line-height: 1.5;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 select {
@@ -107,7 +107,7 @@ select {
   line-height: 1.4;
   cursor: pointer;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 select:hover,
@@ -128,7 +128,7 @@ input:focus {
 
 textarea::placeholder,
 input::placeholder {
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.35);
   font-size: 13px;
 }
 

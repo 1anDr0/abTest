@@ -53,6 +53,7 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
               effectCustom: "",
             });
           }}
+          disabled={finalized}
         >
           <option value="">Välj KPI/effekt</option>
           <option value="Klickfrekvensen">Klickfrekvensen</option>
@@ -94,12 +95,13 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
             }
             placeholder="Ange egen KPI/effekt"
             rows={2}
+            disabled={finalized}
           />
         </>
       )}
 
       <div className={styles.labelRow}>
-        <label className={styles.labelNoMargin}>
+        <label className={styles.labelNoMarginradio}>
           Vad förväntar du dig att förändringen gör med KPI:n?
         </label>
         <span className={styles.tooltipWrapper}>
@@ -119,6 +121,7 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
             onChange={(e) =>
               setFormData({ ...formData, direction: e.target.value })
             }
+            disabled={finalized}
           />
           Öka <FaArrowUp />
         </label>
@@ -131,6 +134,7 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
             onChange={(e) =>
               setFormData({ ...formData, direction: e.target.value })
             }
+            disabled={finalized}
           />
           Minska <FaArrowDown />
         </label>

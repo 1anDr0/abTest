@@ -32,7 +32,7 @@ const Step2 = ({ formData, setFormData }) => {
           })
         }
         placeholder="Exempel: Användare uppfattar inte CTA:n som relevant eller värdefull i första intrycket"
-        rows={2}
+        rows={4}
       />
     </div>
   );

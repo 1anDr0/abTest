@@ -4,46 +4,29 @@
   line-height: 1;
 }
 
-.finishBtn {
-  margin-top: 18px;
-  width: 100%;
-  min-height: 48px;
-  padding: 12px 18px;
-  border: none;
-  background: linear-gradient(135deg, #22d3ee, #6366f1);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(34, 211, 238, 0.18);
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 600;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    opacity 0.2s ease;
-}
-.finishBtn:disabled {
-  opacity: 0.38;
-  cursor: not-allowed;
-}
-/* Flexrad för label + ikon */
 .labelRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
-  margin-top: 20px;
+  margin-bottom: 4px;
+  padding-top: 1rem;
 }
 
 .labelNoMargin {
   margin: 0;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
-  font-weight: 500;
+}
+
+.labelNoMarginradio {
+  padding-top: 12px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+label {
+  font-size: 14px;
+  font-weight: 400;
 }
 
 select option {
@@ -104,7 +87,7 @@ select option {
 .radioGroup {
   display: flex;
   gap: 24px;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .radioLabel {
