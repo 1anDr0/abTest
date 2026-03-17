@@ -13,9 +13,7 @@ const Step2 = ({ formData, setFormData }) => {
   return (
     <div className={styles.steps}>
       <div className={styles.labelRow}>
-        <label className={styles.labelNoMargin}>
-          Vad är problemet?
-        </label>
+        <label className={styles.labelNoMargin}>Vad är problemet?</label>
         <span className={styles.tooltipWrapper}>
           <FaRegQuestionCircle />
           <span className={styles.tooltipText}>
@@ -34,7 +32,7 @@ const Step2 = ({ formData, setFormData }) => {
           })
         }
         placeholder="Exempel: Användare uppfattar inte CTA:n som relevant eller värdefull i första intrycket"
-        rows={4}
+        rows={2}
       />
     </div>
   );

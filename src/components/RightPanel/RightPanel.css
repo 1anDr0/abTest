@@ -1,6 +1,6 @@
 /* basic layout for right panel container */
 .rightpanel-container {
-  padding: 0 clamp(24px, 5vw, 72px);
+  padding: 0 clamp(12px, 3.5vw, 56px);
   display: flex;
   flex-direction: column;
   justify-content: center;

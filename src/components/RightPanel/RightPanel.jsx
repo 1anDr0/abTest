@@ -63,7 +63,7 @@ export default function RightPanel({ currentStep, formData, finalized }) {
                 Detta tyder på att{" "}
                 <b>
                   {formData.problem ||
-                    "Användare uppfattar inte CTA:n som relevant eller värdefull i första intrycket"}
+                    "användare uppfattar inte CTA:n som relevant eller värdefull i första intrycket"}
                 </b>
                 .
               </p>

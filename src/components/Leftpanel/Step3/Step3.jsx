@@ -34,7 +34,7 @@ const Step3 = ({ formData, setFormData }) => {
           })
         }
         placeholder="Exempel: ändra CTA-texten från “Slutför köp” till “Få din beställning idag”"
-        rows={4}
+        rows={2}
       />
 
       <div className={styles.labelRow}>
