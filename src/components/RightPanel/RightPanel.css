@@ -37,11 +37,7 @@
 }
 
 /* steps wrapper with vertical line */
-.hypothesis-steps {
-  position: relative;
 
-  line-height: 1.5;
-}
 .hypothesis-steps::before {
   display: none; /* colored segments replace the base line */
 }
@@ -51,10 +47,6 @@
 
   padding-left: 20px;
 }
-/* remove small dot icon; segments alone convey status now */
-.hypothesis-step::before {
-  display: none;
-}
 
 /* base colored segment behind each step */
 .hypothesis-step::after {
@@ -63,9 +55,18 @@
   left: -4px;
   top: 0;
   bottom: 0;
-  width: 4px; /* slightly thicker line */
+  width: 3px; /* slightly thicker line */
   background: rgba(0, 0, 0, 0.2);
-  border-radius: 2px;
+  border-radius: 0;
+}
+
+.hypothesis-step:first-child::after {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.hypothesis-step:last-child::after {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .hypothesis-step.completed {

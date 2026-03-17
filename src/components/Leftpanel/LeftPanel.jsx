@@ -243,7 +243,7 @@ const LeftPanel = ({
               ) : (
                 <TbCircleNumber4 className="step-icon" />
               )}
-              <h2>Effekt</h2>
+              <h2 className={finalized ? "inactive-heading" : ""}>Effekt</h2>
             </div>
             {!showHeader && currentStep === 4 && (
               <div className="line4">

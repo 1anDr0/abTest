@@ -33,14 +33,14 @@ const Header = ({ visible, onOk }) => {
         {/* <p className="underSub-2">
           Fyll i stegen till vänster för att bygga din hypotes.
         </p> */}
-        <div className="header-btn-row">
+        {/* <div className="header-btn-row">
           <button className="header-ok-btn" onClick={onOk}>
             <span className="header-ok-label"> Kom igång</span>
             <span className="header-ok-arrow">
               <FaArrowRight />
             </span>
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
