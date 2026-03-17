@@ -21,33 +21,35 @@ label {
   position: relative;
   display: inline-flex;
   align-items: center;
-  color: #22d3ee;
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
 }
 
 .tooltipText {
+  font-size: 13px;
   visibility: hidden;
   width: 240px;
   background: rgba(255, 255, 255, 0.96);
   color: #111827;
   text-align: left;
+  z-index: 999;
   border-radius: 12px;
   padding: 10px 12px;
   position: absolute;
-  z-index: 999;
   bottom: 135%;
   left: 50%;
   transform: translateX(-50%);
-  opacity: 0;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-  font-size: 13px;
-  line-height: 1.4;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  pointer-events: none;
 }
 
+@media (max-width: 900px) {
+  .tooltipText {
+    bottom: auto;
+    left: auto;
+    right: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
 .tooltipWrapper:hover .tooltipText {
   visibility: visible;
   opacity: 1;
@@ -122,7 +124,7 @@ textarea:focus,
 input:focus {
   outline: none;
   background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.3);
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
 }
 

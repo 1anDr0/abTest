@@ -22,6 +22,7 @@ const LeftPanel = ({
   finalized,
   setFinalized,
 }) => {
+  const [showHeader, setShowHeader] = useState(true);
   // Håller koll på vilka steg som är "avklarade" (när användaren tryckt Nästa)
   const [completedSteps, setCompletedSteps] = useState([]);
 
@@ -101,7 +102,13 @@ const LeftPanel = ({
 
   return (
     <div className="leftpanel-wrapper">
-      <div className="leftpanel-header">{/* <Header /> */}</div>
+      <Header
+        visible={showHeader}
+        onOk={() => {
+          setShowHeader(false);
+          setCurrentStep(1);
+        }}
+      />
       <div className="leftpanel">
         <div className="steps-container">
           {/* steg 1 */}
@@ -252,9 +259,7 @@ const LeftPanel = ({
               </div>
             )}
           </div>
-          {/* end step-card */}
-        </div>{" "}
-        {/* end steps-container */}
+        </div>
       </div>
     </div>
   );

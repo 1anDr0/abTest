@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./HypotesBuilder.css";
 import LeftPanel from "../Leftpanel/LeftPanel";
 import RightPanel from "../RightPanel/RightPanel";
+import Header from "../Leftpanel/Header/Header";
 
-const HypotesBuilder = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-
+const HypotesBuilder = ({
+  currentStep,
+  setCurrentStep,
+  onObservationChange,
+}) => {
   // whether the hypothesis has been explicitly finished by the user
   const [finalized, setFinalized] = useState(false);
 
@@ -14,20 +17,24 @@ const HypotesBuilder = () => {
     observation: "",
     evidence: "Välj källa",
     evidenceCustom: "",
-
-    //Steg 2
+    // Steg 2
     problem: "",
-
-    //Steg 3
+    // Steg 3
     change: "",
     target: "Välj målgrupp",
     where: "Välj plats på sidan",
-
-    //Steg 4
+    // Steg 4
     effect: "Välj KPI/effekt",
-    // default direction set to "increase" so the Öka radio är preselected
     direction: "increase",
   });
+
+  // Anropa callback när observation ändras
+  const handleFormData = (data) => {
+    if (onObservationChange) {
+      onObservationChange(data.observation);
+    }
+    setFormData(data);
+  };
 
   return (
     <div className="page">
@@ -38,21 +45,16 @@ const HypotesBuilder = () => {
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}
               formData={formData}
-              setFormData={setFormData}
+              setFormData={handleFormData}
               finalized={finalized}
-              setFinalized={(val) => {
-                setFinalized(val);
-                if (!val) setCurrentStep(1); // Gå till steg 1 när redigering startas
-              }}
+              setFinalized={setFinalized}
             />
           </div>
-          <div className="rightpanel-container">
-            <RightPanel
-              currentStep={currentStep}
-              formData={formData}
-              finalized={finalized}
-            />
-          </div>
+          <RightPanel
+            currentStep={currentStep}
+            formData={formData}
+            finalized={finalized}
+          />
         </div>
       </div>
     </div>

@@ -34,36 +34,44 @@ select option {
   color: #111827;
 }
 /* Tooltip för frågetecken */
+/* Tooltip */
 .tooltipWrapper {
   position: relative;
   display: inline-flex;
   align-items: center;
-  color: #22d3ee;
+  color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
 }
+
 .tooltipText {
+  font-size: 13px;
   visibility: hidden;
-  width: 220px;
-  background-color: white;
-  color: black;
+  width: 240px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #111827;
   text-align: left;
-  border-radius: 6px;
-  padding: 8px 12px;
-  position: absolute;
   z-index: 999;
-  bottom: 125%;
+  border-radius: 12px;
+  padding: 10px 12px;
+  position: absolute;
+  bottom: 135%;
   left: 50%;
   transform: translateX(-50%);
-  opacity: 0;
-  transition: opacity 0.2s;
-  font-size: 13px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  pointer-events: none;
 }
 
+@media (max-width: 900px) {
+  .tooltipText {
+    bottom: auto;
+    left: auto;
+    right: 110%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
 .tooltipWrapper:hover .tooltipText {
   visibility: visible;
   opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
 }
 /* Custom select wrapper för pil-ikon */
 .selectWrapper {

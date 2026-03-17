@@ -31,7 +31,7 @@ const Step2 = ({ formData, setFormData }) => {
               e.target.value.charAt(0).toLowerCase() + e.target.value.slice(1),
           })
         }
-        placeholder="Exempel: Användare uppfattar inte CTA:n som relevant eller värdefull i första intrycket"
+        placeholder="Exempel: användare uppfattar inte CTA:n som relevant eller värdefull i första intrycket"
         rows={4}
       />
     </div>
