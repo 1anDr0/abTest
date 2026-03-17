@@ -5,6 +5,7 @@ import Step2 from "./Step2/Step2";
 import Step3 from "./Step3/Step3";
 import Step4 from "./Step4/Step4";
 import Header from "./Header/Header";
+import Footer from "./Header/Footer";
 
 import { TbCircleNumber1 } from "react-icons/tb";
 import { TbCircleNumber2 } from "react-icons/tb";
@@ -21,8 +22,8 @@ const LeftPanel = ({
   setFormData,
   finalized,
   setFinalized,
+  showHeader,
 }) => {
-  const [showHeader, setShowHeader] = useState(true);
   // Håller koll på vilka steg som är "avklarade" (när användaren tryckt Nästa)
   const [completedSteps, setCompletedSteps] = useState([]);
 
@@ -102,19 +103,16 @@ const LeftPanel = ({
 
   return (
     <div className="leftpanel-wrapper">
-      <Header
-        visible={showHeader}
-        onOk={() => {
-          setShowHeader(false);
-          setCurrentStep(1);
-        }}
-      />
       <div className="leftpanel">
         <div className="steps-container">
           {/* steg 1 */}
           <div
-            className={`step-card ${currentStep === 1 ? "active" : "collapsed"} ${1 > currentStep && !allComplete ? "disabled" : ""}`}
-            onClick={() => handleStepClick(1)}
+            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 1 ? "active" : "collapsed"} ${1 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled" : ""}`}
+            onClick={() => {
+              if (!showHeader && !finalized) {
+                setCurrentStep(1);
+              }
+            }}
           >
             <div className="step-heading">
               {completedSteps.includes(1) ? (
@@ -124,8 +122,7 @@ const LeftPanel = ({
               )}
               <h2>Insikt / Observation</h2>
             </div>
-
-            {currentStep === 1 && (
+            {!showHeader && currentStep === 1 && (
               <>
                 <div className="line">
                   <Step1 formData={formData} setFormData={setFormData} />
@@ -153,8 +150,10 @@ const LeftPanel = ({
           </div>
           {/* steg 2 */}
           <div
-            className={`step-card ${currentStep === 2 ? "active" : "collapsed"} ${2 > currentStep && !allComplete ? "disabled" : ""}`}
-            onClick={() => handleStepClick(2)}
+            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 2 ? "active" : "collapsed"} ${2 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled" : ""}`}
+            onClick={() => {
+              if (!showHeader && !finalized) handleStepClick(2);
+            }}
           >
             <div className="step-heading">
               {completedSteps.includes(2) ? (
@@ -164,37 +163,34 @@ const LeftPanel = ({
               )}
               <h2>Tolkning</h2>
             </div>
-
-            {currentStep === 2 && (
-              <>
-                <div className="line">
-                  <Step2 formData={formData} setFormData={setFormData} />
-                  <button
-                    className="next-btn"
-                    disabled={!canGoNext}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (canGoNext) {
-                        markStepComplete(2);
-                        setTimeout(() => {
-                          setCurrentStep(3);
-                        }, 200);
-                      }
-                    }}
-                  >
-                    Nästa steg{" "}
-                    <span className="next-arrow">
-                      <FaArrowRight />
-                    </span>
-                  </button>
-                </div>
-              </>
+            {!showHeader && currentStep === 2 && (
+              <div className="line">
+                <Step2 formData={formData} setFormData={setFormData} />
+                <button
+                  className="next-btn"
+                  disabled={!canGoNext}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (canGoNext) {
+                      markStepComplete(2);
+                      setTimeout(() => setCurrentStep(3), 200);
+                    }
+                  }}
+                >
+                  Nästa steg{" "}
+                  <span className="next-arrow">
+                    <FaArrowRight />
+                  </span>
+                </button>
+              </div>
             )}
           </div>
           {/* steg 3 */}
           <div
-            className={`step-card ${currentStep === 3 ? "active" : "collapsed"} ${3 > currentStep && !allComplete ? "disabled" : ""}`}
-            onClick={() => handleStepClick(3)}
+            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 3 ? "active" : "collapsed"} ${3 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled" : ""}`}
+            onClick={() => {
+              if (!showHeader && !finalized) handleStepClick(3);
+            }}
           >
             <div className="step-heading">
               {completedSteps.includes(3) ? (
@@ -204,8 +200,7 @@ const LeftPanel = ({
               )}
               <h2>Förändring</h2>
             </div>
-
-            {currentStep === 3 && (
+            {!showHeader && currentStep === 3 && (
               <>
                 <div className="line">
                   <Step3 formData={formData} setFormData={setFormData} />
@@ -233,20 +228,25 @@ const LeftPanel = ({
           </div>
           {/* steg 4 */}
           <div
-            className={`step-card ${currentStep === 4 ? "active" : "collapsed"} ${4 > currentStep && !allComplete ? "disabled" : ""}`}
-            onClick={() => handleStepClick(4)}
+            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 4 ? "active" : "collapsed"} ${4 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled" : ""}`}
+            onClick={() => {
+              if (!showHeader && !finalized) handleStepClick(4);
+            }}
           >
             <div className="step-heading">
               {completedSteps.includes(4) ? (
-                <PiSealCheckBold className="step-icon completed" />
+                finalized ? (
+                  <PiSealCheckBold className="step-icon inactive" />
+                ) : (
+                  <PiSealCheckBold className="step-icon completed" />
+                )
               ) : (
                 <TbCircleNumber4 className="step-icon" />
               )}
               <h2>Effekt</h2>
             </div>
-
-            {currentStep === 4 && (
-              <div className="line">
+            {!showHeader && currentStep === 4 && (
+              <div className="line4">
                 <Step4
                   formData={formData}
                   setFormData={setFormData}
@@ -261,6 +261,7 @@ const LeftPanel = ({
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

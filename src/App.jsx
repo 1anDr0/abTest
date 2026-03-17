@@ -5,7 +5,8 @@ import Header from "./components/Leftpanel/Header/Header";
 
 function App() {
   const [showHeader, setShowHeader] = useState(true);
-  const [currentStep, setCurrentStep] = useState(1);
+  // Starta på step 0 (eller null) så att inget steg är öppet
+  const [currentStep, setCurrentStep] = useState(0);
 
   // Dölj toast när användaren börjar skriva i observation
   const handleObservation = (observation) => {
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <>
+      {showHeader && <Header visible={true} onOk={handleHeaderOk} />}
       <div>
         <HypotesBuilder
           currentStep={currentStep}

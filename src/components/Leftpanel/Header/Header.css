@@ -1,13 +1,13 @@
 /* Toast/overlay i hörnet, påverkar aldrig layout */
 
 .header-flydown {
-  margin-top: 24px;
-  margin-bottom: -100px;
-  /* Remove fixed positioning so header is always above form */
-  /* position: fixed; */
-  /* top: 24px; */
-  /* left: 24px; */
-  /* z-index: 2000; */
+  padding: 0 clamp(16px, 4vw, 80px);
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  margin-top: 0;
+  z-index: 2000;
   /* animation: toast-in 0.5s cubic-bezier(0.6, 1.5, 0.5, 1) both; */
 }
 /* Toast/overlay i hörnet, påverkar aldrig layout */

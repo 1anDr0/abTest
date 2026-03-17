@@ -150,7 +150,7 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
         </button>
       ) : (
         <button
-          className={styles.finishBtn}
+          className={styles.finishBtn + " " + styles.alwaysActiveBtn}
           onClick={() => setFinalized(false)}
         >
           Redigera hypotes

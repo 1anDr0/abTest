@@ -1,3 +1,17 @@
+.absoluteEditBtn {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: 1 !important;
+  z-index: 10;
+  pointer-events: auto;
+}
+.steps {
+  position: relative;
+  min-height: 320px;
+}
 .radioLabel svg {
   font-size: 28px !important;
   vertical-align: middle;
@@ -139,4 +153,8 @@ select option {
   opacity: 0.38;
   cursor: not-allowed;
   box-shadow: none;
+}
+
+.finishBtn:not(:disabled) {
+  opacity: 1 !important;
 }

@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import "./HypotesBuilder.css";
 import LeftPanel from "../Leftpanel/LeftPanel";
 import RightPanel from "../RightPanel/RightPanel";
-import Header from "../Leftpanel/Header/Header";
 
 const HypotesBuilder = ({
   currentStep,
   setCurrentStep,
   onObservationChange,
+  showHeader,
 }) => {
   // whether the hypothesis has been explicitly finished by the user
   const [finalized, setFinalized] = useState(false);
@@ -48,6 +48,7 @@ const HypotesBuilder = ({
               setFormData={handleFormData}
               finalized={finalized}
               setFinalized={setFinalized}
+              showHeader={showHeader}
             />
           </div>
           <RightPanel
