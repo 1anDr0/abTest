@@ -25,7 +25,6 @@ body {
       display: grid;
       grid-template-columns: 1fr;
       grid-template-rows: auto auto;
-      min-height: 100vh;
     }
   }
 }
@@ -50,23 +49,4 @@ body {
     ),
     linear-gradient(160deg, #12043d 0%, #0d022f 55%, #08021f 100%);
   position: relative;
-  padding: 0 clamp(12px, 3vw, 32px);
-  /* overflow: hidden; */
-
-  @media (max-width: 600px) {
-    padding: 0 12px;
-  }
-}
-
-.leftpanel-container::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.05) 1px,
-    transparent 1px
-  );
-  background-size: 22px 22px;
-  opacity: 0.18;
-  pointer-events: none;
 }

@@ -55,6 +55,7 @@ const HypotesBuilder = ({
             currentStep={currentStep}
             formData={formData}
             finalized={finalized}
+            showHeader={showHeader}
           />
         </div>
       </div>

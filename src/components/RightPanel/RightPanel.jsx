@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { FaRegCopy } from "react-icons/fa6";
 import "./RightPanel.css";
 
-export default function RightPanel({ currentStep, formData, finalized }) {
+export default function RightPanel({
+  currentStep,
+  formData,
+  finalized,
+  showHeader,
+}) {
   // State for copy feedback
   const [copied, setCopied] = useState(false);
 
@@ -37,7 +42,9 @@ export default function RightPanel({ currentStep, formData, finalized }) {
           </h3>
 
           <div className="hypothesis-steps">
-            <div className={`hypothesis-step ${statusFor(1)}`}>
+            <div
+              className={`hypothesis-step ${showHeader ? "inactive" : statusFor(1)}`}
+            >
               <p>
                 Vi har observerat att{" "}
                 <b>

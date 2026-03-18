@@ -7,7 +7,7 @@
 }
 .leftpanel-wrapper {
   min-height: 100vh;
-  padding: 0 clamp(16px, 4vw, 80px);
+  padding: 0 clamp(20px, 4vw, 80px);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -21,14 +21,15 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-  height: 100vh;
-  margin: 20px 0 20px 0;
+
+  margin: 1rem 0 1rem 0;
 }
 
-/* .leftpanel-header {
-  padding-top: 4%;
-  flex-shrink: 0;
-} */
+.leftpanel-wrapper {
+  @media (max-width: 900px) {
+    min-height: 70vh;
+  }
+}
 
 .leftpanel-header {
   align-self: stretch;
@@ -45,6 +46,8 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
+  padding: 0;
+  margin: 0;
 }
 
 .step-card {
@@ -60,6 +63,7 @@
 
 .step-card.active {
   padding-bottom: 1rem;
+  background: none;
 }
 
 .step-card.collapsed {

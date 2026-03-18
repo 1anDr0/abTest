@@ -1,11 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./Leftpanel.css";
 import Step1 from "./Step1/Step1";
 import Step2 from "./Step2/Step2";
 import Step3 from "./Step3/Step3";
 import Step4 from "./Step4/Step4";
-import Header from "./Header/Header";
-import Footer from "./Header/Footer";
+
+// import Footer from "./Header/Footer";
 
 import { TbCircleNumber1 } from "react-icons/tb";
 import { TbCircleNumber2 } from "react-icons/tb";
@@ -13,7 +13,6 @@ import { TbCircleNumber3 } from "react-icons/tb";
 import { TbCircleNumber4 } from "react-icons/tb";
 import { FaArrowRight } from "react-icons/fa";
 import { PiSealCheckBold } from "react-icons/pi";
-import { useState } from "react";
 
 const LeftPanel = ({
   currentStep,
@@ -26,6 +25,13 @@ const LeftPanel = ({
 }) => {
   // Håller koll på vilka steg som är "avklarade" (när användaren tryckt Nästa)
   const [completedSteps, setCompletedSteps] = useState([]);
+  // Counter för att tvinga remount av Step1 när headern stängs
+  const step1KeyCounter = useRef(0);
+  useEffect(() => {
+    if (!showHeader && currentStep === 1) {
+      step1KeyCounter.current += 1;
+    }
+  }, [showHeader, currentStep]);
 
   // Mark all steps as completed when hypothesis is finalized
   useEffect(() => {
@@ -107,9 +113,15 @@ const LeftPanel = ({
         <div className="steps-container">
           {/* steg 1 */}
           <div
-            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 1 ? "active" : "collapsed"} ${1 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled" : ""}`}
+            className={`step-card ${
+              currentStep === 1
+                ? showHeader
+                  ? "collapsed disabled"
+                  : "active"
+                : "collapsed"
+            } ${1 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled" : ""}`}
             onClick={() => {
-              if (!showHeader && !finalized) {
+              if (!finalized) {
                 setCurrentStep(1);
               }
             }}
@@ -122,30 +134,33 @@ const LeftPanel = ({
               )}
               <h2>Insikt / Observation</h2>
             </div>
-            {!showHeader && currentStep === 1 && (
-              <>
-                <div className="line">
-                  <Step1 formData={formData} setFormData={setFormData} />
-                  <button
-                    className="next-btn"
-                    disabled={!canGoNext}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (canGoNext) {
-                        markStepComplete(1);
-                        setTimeout(() => {
-                          setCurrentStep(2);
-                        }, 200);
-                      }
-                    }}
-                  >
-                    Nästa steg{" "}
-                    <span className="next-arrow">
-                      <FaArrowRight />
-                    </span>
-                  </button>
-                </div>
-              </>
+            {currentStep === 1 && !showHeader && (
+              <div className="line">
+                <Step1
+                  formData={formData}
+                  setFormData={setFormData}
+                  showHeader={showHeader}
+                  currentStep={currentStep}
+                />
+                <button
+                  className="next-btn"
+                  disabled={!canGoNext}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (canGoNext) {
+                      markStepComplete(1);
+                      setTimeout(() => {
+                        setCurrentStep(2);
+                      }, 200);
+                    }
+                  }}
+                >
+                  Nästa steg{" "}
+                  <span className="next-arrow">
+                    <FaArrowRight />
+                  </span>
+                </button>
+              </div>
             )}
           </div>
           {/* steg 2 */}
@@ -261,7 +276,7 @@ const LeftPanel = ({
           </div>
         </div>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

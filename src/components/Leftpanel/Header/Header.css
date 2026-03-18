@@ -3,19 +3,27 @@
 .header-flydown {
   position: absolute;
 
-  top: 4%;
-  left: calc(clamp(16px, 4vw, 80px) + 24px);
-  width: calc(100% - 2 * clamp(16px, 4vw, 80px) - 24px);
-  max-width: 480px; /* matcha leftpanel om du har max-width där */
-  margin-top: 0;
+  top: 5%;
+  left: clamp(20px, 4vw, 80px);
+  /* width: calc(100% - 2 * clamp(16px, 4vw, 80px)); */
+  max-width: 420px;
+
   z-index: 2000;
-  /* animation: toast-in 0.5s cubic-bezier(0.6, 1.5, 0.5, 1) both; */
+  /* animation only applied on mount via inline style in JSX */
 }
-/* Toast/overlay i hörnet, påverkar aldrig layout */
+
+@media (max-width: 900px) {
+  .header-flydown {
+    left: 20px;
+    right: 20px;
+    max-width: calc(100vw - 16px);
+  }
+}
 
 .header-flydown.hide {
-  animation: toast-out 0.4s cubic-bezier(0.6, 1.5, 0.5, 1) both;
+  animation: toast-out 0.5s cubic-bezier(0.6, 1.5, 0.5, 1) forwards;
 }
+
 @keyframes toast-in {
   0% {
     opacity: 0;
@@ -26,7 +34,7 @@
     transform: translateX(0) scale(1);
   }
 }
-@keyframes toast-out {
+/* @keyframes toast-out {
   0% {
     opacity: 1;
     transform: translateX(0) scale(1);
@@ -35,21 +43,27 @@
     opacity: 0;
     transform: translateX(-60px) scale(0.98);
   }
-}
+} */
 .header-flydown-inner {
-  position: relative;
-  background: rgba(255, 255, 255, 0);
-  backdrop-filter: blur(6px);
+  /* position: relative; */
+  background: linear-gradient(
+    135deg,
+    rgba(49, 46, 129, 1) 30%,
+    rgba(68, 56, 202, 0.89) 60%,
+    rgba(37, 100, 235, 0.815) 80%
+  );
+  /* border: 1px solid rgba(255, 255, 255, 0.08); */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #f8fafc;
 
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #ffffff;
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 16px;
+  padding: 16px 18px;
   max-width: 100%;
 
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   text-align: left;
-  font-size: 14px;
+
   pointer-events: auto;
 }
 .header-close-btn {
@@ -70,8 +84,17 @@
   color: #22d3ee;
 }
 .header-flydown-inner h2 {
-  font-size: 15px;
+  font-size: 16px;
   margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.header-flydown-inner h2 svg {
+  color: #ffd700;
+  font-size: 24px;
 }
 .underSub-1 {
   font-size: 14px;
@@ -79,7 +102,7 @@
   font-weight: 400;
   line-height: 1.2rem;
 
-  color: #ffffff6b;
+  color: rgba(255, 255, 255, 0.82);
 }
 
 /* .underSub-2 {
@@ -102,7 +125,7 @@
   min-height: 34px;
   padding: 6px 24px 6px 24px;
   border: none;
-  background: linear-gradient(135deg, #22d3ee, #6366f1);
+  background: linear-gradient(135deg, #c522ee, #63a1f1);
   color: white;
   display: flex;
   align-items: center;
@@ -125,7 +148,6 @@
   box-shadow: none;
 }
 .header-ok-btn:hover {
-  background: linear-gradient(135deg, #0ea5e9, #6366f1);
   color: #fff;
   transform: translateY(-1px);
   box-shadow: 0 12px 28px rgba(34, 211, 238, 0.22);

@@ -3,7 +3,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { useRef, useEffect } from "react";
 
-const Step1 = ({ formData, setFormData }) => {
+const Step1 = ({ formData, setFormData, showHeader, currentStep }) => {
   const handleEvidenceChange = (e) => {
     const value = e.target.value;
     setFormData({
@@ -14,11 +14,36 @@ const Step1 = ({ formData, setFormData }) => {
   };
 
   const obsRef = useRef(null);
+  // Sätt fokus när headern stängs och Step1 visas
+  // Sätt fokus ENDAST när showHeader går från true till false och currentStep är 1
+  const prevShowHeader = useRef(showHeader);
   useEffect(() => {
-    if (obsRef.current) {
-      obsRef.current.focus();
+    // Fokusera om header stängs (vanligt fall)
+    if (
+      prevShowHeader.current &&
+      !showHeader &&
+      currentStep === 1 &&
+      obsRef.current
+    ) {
+      requestAnimationFrame(() => {
+        obsRef.current && obsRef.current.focus();
+      });
     }
-  }, []);
+    // Fokusera om global flagga är satt (t.ex. efter Kom igång)
+    if (
+      typeof window.focusStep1Textarea !== "undefined" &&
+      window.focusStep1Textarea &&
+      !showHeader &&
+      currentStep === 1 &&
+      obsRef.current
+    ) {
+      requestAnimationFrame(() => {
+        obsRef.current && obsRef.current.focus();
+        window.focusStep1Textarea = false;
+      });
+    }
+    prevShowHeader.current = showHeader;
+  }, [showHeader, currentStep]);
 
   return (
     <div className={styles.steps}>
@@ -35,12 +60,18 @@ const Step1 = ({ formData, setFormData }) => {
       <textarea
         ref={obsRef}
         value={formData.observation}
+        disabled={showHeader}
+        onFocus={() => {
+          if (showHeader && typeof window.setShowHeader === "function") {
+            window.setShowHeader(false);
+          }
+        }}
         onChange={(e) =>
-          setFormData({
-            ...formData,
+          setFormData((prev) => ({
+            ...prev,
             observation:
               e.target.value.charAt(0).toLowerCase() + e.target.value.slice(1),
-          })
+          }))
         }
         placeholder="Exempel: 25% av användare inte klickar på CTA-knappen"
         rows={3}
@@ -55,7 +86,11 @@ const Step1 = ({ formData, setFormData }) => {
         </span>
       </div>
       <div className={styles.selectWrapper}>
-        <select value={formData.evidence} onChange={handleEvidenceChange}>
+        <select
+          value={formData.evidence}
+          onChange={handleEvidenceChange}
+          disabled={showHeader}
+        >
           <option value="">Välj källa</option>
           <option value="Användartester">Användartester</option>
           <option value="Hotjar heatmaps">Hotjar heatmaps</option>
@@ -76,7 +111,7 @@ const Step1 = ({ formData, setFormData }) => {
           <IoIosArrowDown />
         </span>
       </div>
-      {formData.evidence === "Annat" && (
+      {formData.evidence === "Annat" && !showHeader && (
         <>
           <div className={styles.labelRow}>
             <label className={styles.labelNoMargin}>Beskriv källa</label>
@@ -90,13 +125,14 @@ const Step1 = ({ formData, setFormData }) => {
           </div>
           <textarea
             value={formData.evidenceCustom || ""}
+            disabled={showHeader}
             onChange={(e) =>
-              setFormData({
-                ...formData,
+              setFormData((prev) => ({
+                ...prev,
                 evidenceCustom:
                   e.target.value.charAt(0).toLowerCase() +
                   e.target.value.slice(1),
-              })
+              }))
             }
             placeholder="Skriv egen källa..."
             rows={2}
