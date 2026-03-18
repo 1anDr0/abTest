@@ -4,6 +4,7 @@ import Step1 from "./Step1/Step1";
 import Step2 from "./Step2/Step2";
 import Step3 from "./Step3/Step3";
 import Step4 from "./Step4/Step4";
+import Header from "./Header/Header";
 
 // import Footer from "./Header/Footer";
 
@@ -21,12 +22,23 @@ const LeftPanel = ({
   setFormData,
   finalized,
   setFinalized,
-  showHeader,
 }) => {
+  // Header ska synas från start
+  const [showHeader, setShowHeader] = useState(true);
+  // Gör showHeader globalt så RightPanel kan läsa det
+  if (typeof window !== "undefined") window.showHeader = showHeader;
+
+  // Sätt finalized till true när headern visas (exempel)
+  useEffect(() => {
+    if (showHeader) {
+      setFinalized(true);
+    }
+  }, [showHeader, setFinalized]);
   // Håller koll på vilka steg som är "avklarade" (när användaren tryckt Nästa)
   const [completedSteps, setCompletedSteps] = useState([]);
   // Counter för att tvinga remount av Step1 när headern stängs
   const step1KeyCounter = useRef(0);
+
   useEffect(() => {
     if (!showHeader && currentStep === 1) {
       step1KeyCounter.current += 1;
@@ -39,6 +51,18 @@ const LeftPanel = ({
       setCompletedSteps([1, 2, 3, 4]);
     }
   }, [finalized]);
+
+  // Dölj header när observation fylls i
+  useEffect(() => {
+    if (
+      showHeader &&
+      formData.observation &&
+      formData.observation.trim() !== ""
+    ) {
+      setShowHeader(false);
+    }
+  }, [formData.observation, showHeader]);
+
   // helper to check if a given step's required fields are filled
   const isStepComplete = (step) => {
     switch (step) {
@@ -109,6 +133,17 @@ const LeftPanel = ({
 
   return (
     <div className="leftpanel-wrapper">
+      {showHeader && (
+        <Header
+          visible={true}
+          onOk={() => {
+            setShowHeader(false);
+            setCurrentStep(1);
+            setFinalized(false);
+            setCompletedSteps([]);
+          }}
+        />
+      )}
       <div className="leftpanel">
         <div className="steps-container">
           {/* steg 1 */}

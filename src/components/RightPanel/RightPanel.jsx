@@ -37,8 +37,9 @@ export default function RightPanel({
       <div className="header header-placeholder" />
       <div className="hypothesis-wrapper">
         <div className={`hypothesis-box${finalized ? " finalized" : ""}`}>
+          {/* Döljer rubrik och copy när headern visas */}
           <h3>
-            {finalized ? "Din hypotes (färdigställd)" : "Din hypotes (utkast)"}
+            {finalized ? "Hypotes (färdigställd)" : "Din hypotes (utkast)"}
           </h3>
 
           <div className="hypothesis-steps">
@@ -126,7 +127,7 @@ export default function RightPanel({
               </p>
             </div>
           </div>
-          {finalized && (
+          {finalized && !showHeader && (
             <div className="copy-hypothesis-bottom">
               <button
                 className="copy-btn"

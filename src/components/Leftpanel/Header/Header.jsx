@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { FaArrowRight } from "react-icons/fa";
-import { IoClose } from "react-icons/io5";
 import { BsStars } from "react-icons/bs";
 
 const Header = ({ visible, onOk }) => {
@@ -30,27 +29,30 @@ const Header = ({ visible, onOk }) => {
       style={flydownStyle}
     >
       <div className="header-flydown-inner">
-        <span className="header-close-btn" onClick={onOk}>
-          <IoClose />
-        </span>
-        <h2>
+        <div className="header-star-icon">
           <BsStars />
-          Skapa och optimera dina A/B-hypoteser
-        </h2>
-        <p className="underSub-1">
-          Följ dessa enkla steg för att formulera din hypotes och börja testa
-          förbättringar på din webbplats.
-        </p>
-        {/* <p className="underSub-2">
-          Fyll i stegen till vänster för att bygga din hypotes.
-        </p> */}
+        </div>
+        <h2>Bygg din hypotes</h2>
+        <div className="info-text">
+          <p className="underSub-1">Fyll i stegen till vänster</p>
+          <p className="underSub-2">
+            - din färdiga hypotes skrivs ihop automatiskt till höger.
+          </p>
+          {/* <p className="underSub-3">
+            Fyll i stegen så uppdateras den automatiskt.
+          </p> */}
+        </div>
         <div className="header-btn-row">
           <button className="header-ok-btn" onClick={onOk}>
-            <span className="header-ok-label"> Kom igång</span>
+            <span className="header-ok-label"> Börja med observation</span>
             <span className="header-ok-arrow">
               <FaArrowRight />
             </span>
           </button>
+        </div>
+        <div className="header-powered-by">
+          <span>Powered by</span>
+          <img src="/maia-logo-white-19%20(1).png" alt="Powered by logo" />
         </div>
       </div>
     </div>

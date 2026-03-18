@@ -3,12 +3,7 @@ import "./HypotesBuilder.css";
 import LeftPanel from "../Leftpanel/LeftPanel";
 import RightPanel from "../RightPanel/RightPanel";
 
-const HypotesBuilder = ({
-  currentStep,
-  setCurrentStep,
-  onObservationChange,
-  showHeader,
-}) => {
+const HypotesBuilder = ({ currentStep, setCurrentStep }) => {
   // whether the hypothesis has been explicitly finished by the user
   const [finalized, setFinalized] = useState(false);
 
@@ -28,11 +23,8 @@ const HypotesBuilder = ({
     direction: "increase",
   });
 
-  // Anropa callback när observation ändras
+  // Uppdatera formData
   const handleFormData = (data) => {
-    if (onObservationChange) {
-      onObservationChange(data.observation);
-    }
     setFormData(data);
   };
 
@@ -48,14 +40,17 @@ const HypotesBuilder = ({
               setFormData={handleFormData}
               finalized={finalized}
               setFinalized={setFinalized}
-              showHeader={showHeader}
             />
           </div>
           <RightPanel
             currentStep={currentStep}
             formData={formData}
             finalized={finalized}
-            showHeader={showHeader}
+            showHeader={
+              typeof window !== "undefined" && window.showHeader !== undefined
+                ? window.showHeader
+                : false
+            }
           />
         </div>
       </div>

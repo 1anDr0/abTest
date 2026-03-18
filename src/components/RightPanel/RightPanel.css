@@ -1,9 +1,10 @@
 /* basic layout for right panel container */
 .rightpanel-container {
-  padding: 0 clamp(20px, 3.5vw, 56px);
+  padding: 0 clamp(30px, 3.5vw, 56px);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  line-height: 1.6rem;
 }
 /* hidden header element to reserve vertical space */
 .header-placeholder {
@@ -21,7 +22,7 @@
 /* actual white card holding the hypothesis content */
 .hypothesis-box {
   background: #ffffff;
-  padding: 1% 8% 12% 8%;
+  padding: 1% 8% 10% 8%;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -31,7 +32,7 @@
 
 .rightpanel-container h3 {
   margin-top: 0px;
-  margin-bottom: 12%;
+  margin-bottom: 8%;
   font-size: 12px;
   text-align: center;
   font-weight: 800;
@@ -45,7 +46,7 @@
 
 .hypothesis-step {
   position: relative;
-
+  font-size: 15px;
   padding-left: 20px;
 }
 
@@ -115,15 +116,16 @@
 
 /* override previous empty file to ensure preexisting styles don't conflict */
 
-p {
-  font-size: 15px;
-  line-height: 1.6;
+p .hypothesis-step {
+  font-size: 15px !important;
+
   font-weight: 00;
-  color: #111827;
+  color: #b5b9c2;
   margin: 0;
 }
 
-b {
+b .hypothesis-step {
+  font-size: 15px !important;
   font-weight: 600;
   color: #1b0461fb;
 }
@@ -175,4 +177,8 @@ b {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   pointer-events: none;
   white-space: nowrap;
+}
+
+.hypothesis-box.finalized h3 {
+  opacity: 0.4;
 }

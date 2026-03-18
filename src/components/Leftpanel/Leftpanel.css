@@ -5,9 +5,10 @@
   color: #3ec858 !important;
   opacity: 0.5 !important;
 }
+
 .leftpanel-wrapper {
   min-height: 100vh;
-  padding: 0 clamp(20px, 4vw, 80px);
+  padding: 0 clamp(30px, 4vw, 80px);
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -27,7 +28,7 @@
 
 .leftpanel-wrapper {
   @media (max-width: 900px) {
-    min-height: 70vh;
+    min-height: 80vh;
   }
 }
 
