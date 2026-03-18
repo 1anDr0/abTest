@@ -20,7 +20,7 @@ const HypotesBuilder = ({ currentStep, setCurrentStep }) => {
     where: "Välj plats på sidan",
     // Steg 4
     effect: "Välj KPI/effekt",
-    direction: "increase",
+    direction: "",
   });
 
   // Uppdatera formData

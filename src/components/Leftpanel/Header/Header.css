@@ -16,24 +16,23 @@
 
 @media (max-width: 900px) {
   .header-flydown {
-    right: 20px;
     width: 100vw;
   }
 }
 
-@media (max-width: 900px) {
+/* @media (max-width: 900px) {
   .header-flydown-inner {
-    height: 60vh;
+    height: 300px;
   }
-}
+} */
 
 .header-flydown-inner {
   /* position: relative; */
   background: linear-gradient(
     135deg,
-    rgba(20, 4, 59, 0.74) 30%,
-    rgba(68, 56, 202, 0.377) 60%,
-    rgba(37, 100, 235, 0.103) 80%
+    rgba(20, 4, 59, 0.808) 30%,
+    rgba(68, 56, 202, 0.164) 60%,
+    rgba(37, 100, 235, 0.267) 80%
   );
   /* border: 1px solid rgba(255, 255, 255, 0.08); */
   backdrop-filter: blur(10px);
@@ -81,7 +80,7 @@
 }
 
 .info-text {
-  font-weight: 600;
+  font-weight: 400;
   line-height: 1.5rem;
   font-size: 16px;
   color: rgba(255, 255, 255, 0.8);

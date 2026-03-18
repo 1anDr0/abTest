@@ -3,7 +3,13 @@ import { FaArrowUp, FaArrowDown, FaRegQuestionCircle } from "react-icons/fa";
 import styles from "./Step4.module.css";
 import { useRef, useEffect } from "react";
 
-const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
+const Step4 = ({
+  formData,
+  setFormData,
+  finalized,
+  setFinalized,
+  setStepOpen,
+}) => {
   // Kontrollera om en riktig KPI är vald
   const isKpiSelected =
     formData.effect &&
@@ -12,12 +18,17 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
     (formData.effect !== "Annat" ||
       (formData.effectCustom && formData.effectCustom.trim() !== ""));
 
+  const isDirectionSelected =
+    formData.direction &&
+    (formData.direction === "increase" || formData.direction === "decrease");
+
   const complete = formData.effect && formData.effect.trim() !== "";
 
   const handleFinish = () => {
     if (!isKpiSelected) return; // Förhindra klick om ingen KPI är vald
     setTimeout(() => {
       setFinalized(true);
+      if (setStepOpen) setStepOpen(false);
     }, 200);
   };
 
@@ -143,7 +154,7 @@ const Step4 = ({ formData, setFormData, finalized, setFinalized }) => {
       {!finalized ? (
         <button
           className={styles.finishBtn}
-          disabled={!isKpiSelected}
+          disabled={!isKpiSelected || !isDirectionSelected}
           onClick={handleFinish}
         >
           Slutför hypotes

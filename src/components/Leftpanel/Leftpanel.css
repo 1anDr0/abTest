@@ -4,6 +4,7 @@
 .step-icon.inactive {
   color: #3ec858 !important;
   opacity: 0.5 !important;
+  font-size: 22px !important;
 }
 
 .leftpanel-wrapper {
@@ -71,12 +72,12 @@
   display: flex;
   align-items: center;
   opacity: 0.5;
-  cursor: pointer;
+  cursor: default;
   border-radius: 12px;
 }
 
 .step-card.collapsed.disabled {
-  cursor: default;
+  cursor: pointer;
   opacity: 0.6;
 }
 
@@ -88,6 +89,7 @@
 /* prevent hover effect on steps that are not clickable */
 .step-card.collapsed.disabled:hover {
   opacity: 0.6;
+  transform: none;
 }
 .step-heading {
   display: flex;
@@ -102,20 +104,34 @@
 }
 
 .step-card.active .step-icon {
-  color: #ffffff;
-  font-size: 24px;
+  color: #ffd900;
+  opacity: 0.9;
+  font-size: 28px;
 }
 
 h2 {
   font-size: 18px;
 
-  font-weight: 800;
+  font-weight: 700;
   margin: 0;
+}
+
+.step-card.active > .step-heading > h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fffffffb;
+}
+
+.step-card.active > .step-heading > h2.inactive-heading {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  opacity: 0.5;
 }
 
 /* Always green for completed steps, even when finalized */
 .step-icon.completed {
   color: #3ec858 !important;
+  font-size: 22px !important;
 }
 
 /* Tar bort skugga från next-btn */

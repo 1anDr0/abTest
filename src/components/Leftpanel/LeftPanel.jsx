@@ -14,6 +14,7 @@ import { TbCircleNumber3 } from "react-icons/tb";
 import { TbCircleNumber4 } from "react-icons/tb";
 import { FaArrowRight } from "react-icons/fa";
 import { PiSealCheckBold } from "react-icons/pi";
+import { MdOutlineBuildCircle } from "react-icons/md";
 
 const LeftPanel = ({
   currentStep,
@@ -38,6 +39,8 @@ const LeftPanel = ({
   const [completedSteps, setCompletedSteps] = useState([]);
   // Counter för att tvinga remount av Step1 när headern stängs
   const step1KeyCounter = useRef(0);
+  // State för att hantera om steg 4 är öppet
+  const [step4Open, setStep4Open] = useState(true);
 
   useEffect(() => {
     if (!showHeader && currentStep === 1) {
@@ -154,7 +157,8 @@ const LeftPanel = ({
                   ? "collapsed disabled"
                   : "active"
                 : "collapsed"
-            } ${1 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled" : ""}`}
+            } ${1 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled finalized" : ""}`}
+            style={finalized ? { cursor: "default" } : {}}
             onClick={() => {
               if (!finalized) {
                 setCurrentStep(1);
@@ -162,7 +166,9 @@ const LeftPanel = ({
             }}
           >
             <div className="step-heading">
-              {completedSteps.includes(1) ? (
+              {currentStep === 1 ? (
+                <MdOutlineBuildCircle className="step-icon active" />
+              ) : completedSteps.includes(1) ? (
                 <PiSealCheckBold className="step-icon completed" />
               ) : (
                 <TbCircleNumber1 className="step-icon" />
@@ -200,13 +206,16 @@ const LeftPanel = ({
           </div>
           {/* steg 2 */}
           <div
-            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 2 ? "active" : "collapsed"} ${2 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled" : ""}`}
+            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 2 ? "active" : "collapsed"} ${2 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled finalized" : ""}`}
+            style={finalized ? { cursor: "default" } : {}}
             onClick={() => {
               if (!showHeader && !finalized) handleStepClick(2);
             }}
           >
             <div className="step-heading">
-              {completedSteps.includes(2) ? (
+              {currentStep === 2 ? (
+                <MdOutlineBuildCircle className="step-icon active" />
+              ) : completedSteps.includes(2) ? (
                 <PiSealCheckBold className="step-icon completed" />
               ) : (
                 <TbCircleNumber2 className="step-icon" />
@@ -237,13 +246,16 @@ const LeftPanel = ({
           </div>
           {/* steg 3 */}
           <div
-            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 3 ? "active" : "collapsed"} ${3 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled" : ""}`}
+            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 3 ? "active" : "collapsed"} ${3 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled finalized" : ""}`}
+            style={finalized ? { cursor: "default" } : {}}
             onClick={() => {
               if (!showHeader && !finalized) handleStepClick(3);
             }}
           >
             <div className="step-heading">
-              {completedSteps.includes(3) ? (
+              {currentStep === 3 ? (
+                <MdOutlineBuildCircle className="step-icon active" />
+              ) : completedSteps.includes(3) ? (
                 <PiSealCheckBold className="step-icon completed" />
               ) : (
                 <TbCircleNumber3 className="step-icon" />
@@ -284,18 +296,24 @@ const LeftPanel = ({
             }}
           >
             <div className="step-heading">
-              {completedSteps.includes(4) ? (
-                finalized ? (
-                  <PiSealCheckBold className="step-icon inactive" />
-                ) : (
-                  <PiSealCheckBold className="step-icon completed" />
-                )
+              {finalized ? (
+                <PiSealCheckBold
+                  className={
+                    currentStep === 4
+                      ? "step-icon inactive"
+                      : "step-icon completed"
+                  }
+                />
+              ) : currentStep === 4 ? (
+                <MdOutlineBuildCircle className="step-icon active" />
+              ) : completedSteps.includes(4) ? (
+                <PiSealCheckBold className="step-icon completed" />
               ) : (
                 <TbCircleNumber4 className="step-icon" />
               )}
               <h2 className={finalized ? "inactive-heading" : ""}>Effekt</h2>
             </div>
-            {!showHeader && currentStep === 4 && (
+            {!showHeader && currentStep === 4 && step4Open && (
               <div className="line4">
                 <Step4
                   formData={formData}
@@ -305,6 +323,7 @@ const LeftPanel = ({
                     setFinalized(val);
                     if (val) markStepComplete(4);
                   }}
+                  setStepOpen={setStep4Open}
                 />
               </div>
             )}

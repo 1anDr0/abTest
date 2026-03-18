@@ -21,10 +21,10 @@
 
 /* actual white card holding the hypothesis content */
 .hypothesis-box {
-  background: #ffffff;
+  background: #ffffff36;
   padding: 1% 8% 10% 8%;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 10px 10px 0 rgba(21, 19, 44, 0.075);
   position: relative;
   border: 1px solid rgba(17, 24, 39, 0.05);
   z-index: 10;
@@ -83,7 +83,7 @@
 }
 /* no before element for current step */
 .hypothesis-step.current::after {
-  background: #6366f1;
+  background: #000000;
 }
 
 .hypothesis-box.finalized .hypothesis-step.current::after {
@@ -139,7 +139,7 @@ b .hypothesis-step {
 
 /* Only icon, no text */
 .copy-btn {
-  border: 1px solid #e5e7eb;
+  border: 1px solid #ffffff9c;
   background: rgba(255, 255, 255, 0.5);
   color: #374151;
   width: 30px;
@@ -169,11 +169,11 @@ b .hypothesis-step {
   position: absolute;
   bottom: 50px;
   right: 0;
-  background: #111827;
-  color: #ffffff;
+  background: #fffefe;
+  color: #000000;
   font-size: 12px;
-  padding: 6px 12px;
-  border-radius: 999px;
+  padding: 4px 14px;
+  border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
   pointer-events: none;
   white-space: nowrap;
