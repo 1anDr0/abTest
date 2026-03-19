@@ -9,6 +9,8 @@ const Step4 = ({
   finalized,
   setFinalized,
   setStepOpen,
+  setCurrentStep,
+  setShowHeader,
 }) => {
   // Kontrollera om en riktig KPI är vald
   const isKpiSelected =
@@ -157,12 +159,40 @@ const Step4 = ({
           Slutför hypotes
         </button>
       ) : (
-        <button
-          className={styles.finishBtn + " " + styles.alwaysActiveBtn}
-          onClick={() => setFinalized(false)}
-        >
-          Redigera hypotes
-        </button>
+        <div style={{ display: "flex", gap: "8px", width: "100%" }}>
+          <button
+            className={styles.finishBtn + " " + styles.alwaysActiveBtn}
+            onClick={() => setFinalized(false)}
+            style={{ flex: 1 }}
+          >
+            Redigera hypotes
+          </button>
+          <button
+            className={styles.finishBtn + " " + styles.alwaysActiveBtn}
+            onClick={() => {
+              setFormData({
+                observation: "",
+                evidence: "Välj källa",
+                evidenceCustom: "",
+                problem: "",
+                change: "",
+                target: "Välj målgrupp",
+                targetCustom: "",
+                where: "Välj plats på sidan",
+                whereCustom: "",
+                effect: "Välj KPI/effekt",
+                effectCustom: "",
+                direction: "",
+              });
+              setFinalized(false);
+              if (typeof setCurrentStep === "function") setCurrentStep(1);
+              if (typeof setShowHeader === "function") setShowHeader(false);
+            }}
+            style={{ flex: 1 }}
+          >
+            Börja om
+          </button>
+        </div>
       )}
     </div>
   );

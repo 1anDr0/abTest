@@ -329,7 +329,6 @@ const LeftPanel = ({
                     if (val) {
                       markStepComplete(4);
                       setTransitioningStep(4);
-
                       setTimeout(() => {
                         setFinalized(true);
                         setStep4Open(true);
@@ -340,6 +339,8 @@ const LeftPanel = ({
                     }
                   }}
                   setStepOpen={setStep4Open}
+                  setCurrentStep={setCurrentStep}
+                  setShowHeader={setShowHeader}
                 />
               </div>
             )}
