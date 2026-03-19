@@ -200,7 +200,7 @@
 }
 
 .line4::before {
-  bottom: 7.4rem;
+  bottom: 1rem;
 }
 
 @media (max-width: 900px) {
