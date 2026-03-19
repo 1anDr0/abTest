@@ -137,7 +137,10 @@ const LeftPanel = ({
       {showHeader && <Header visible={true} onOk={handleStart} />}
 
       <div className="leftpanel">
-        <div className="steps-container">
+        <div
+          className="steps-container"
+          style={{ display: showHeader ? "none" : "flex" }}
+        >
           <div
             className={`step-card ${
               currentStep === 1

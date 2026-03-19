@@ -146,6 +146,10 @@ Vi tror därför att om vi ${content.change} för ${content.target} på ${conten
             </div>
           )}
         </div>
+        <div className="header-powered-by">
+          <span>Powered by</span>
+          <img src="/maia-logo-white-19%20(1).png" alt="Powered by logo" />
+        </div>
       </div>
     </div>
   );

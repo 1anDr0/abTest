@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css";
 import { FaArrowRight } from "react-icons/fa";
-import { BsStars } from "react-icons/bs";
+import { TbCircleLetterAFilled } from "react-icons/tb";
+import { TbCircleLetterB } from "react-icons/tb";
+import { HiSlash } from "react-icons/hi2";
 
 const Header = ({ visible, onOk }) => {
   const [show, setShow] = useState(visible);
@@ -30,7 +32,9 @@ const Header = ({ visible, onOk }) => {
     >
       <div className="header-flydown-inner">
         <div className="header-star-icon">
-          <BsStars />
+          <TbCircleLetterAFilled />
+          <HiSlash />
+          <TbCircleLetterB />
         </div>
         <h2>Bygg din hypotes</h2>
         <div className="info-text">
@@ -49,10 +53,6 @@ const Header = ({ visible, onOk }) => {
               <FaArrowRight />
             </span>
           </button>
-        </div>
-        <div className="header-powered-by">
-          <span>Powered by</span>
-          <img src="/maia-logo-white-19%20(1).png" alt="Powered by logo" />
         </div>
       </div>
     </div>
