@@ -2,6 +2,9 @@ import { IoIosArrowDown } from "react-icons/io";
 import { FaArrowUp, FaArrowDown, FaRegQuestionCircle } from "react-icons/fa";
 import styles from "./Step4.module.css";
 import { useRef, useEffect } from "react";
+import { VscDebugRestart } from "react-icons/vsc";
+import { MdEdit } from "react-icons/md";
+import { FaCheck } from "react-icons/fa6";
 
 const Step4 = ({
   formData,
@@ -158,19 +161,12 @@ const Step4 = ({
           disabled={!isKpiSelected || !isDirectionSelected}
           onClick={handleFinish}
         >
-          Slutför hypotes
+          Slutför hypotes <FaCheck />
         </button>
       ) : (
-        <div style={{ display: "flex", gap: "8px", width: "100%" }}>
+        <div style={{ display: "flex", gap: "12px", width: "100%" }}>
           <button
-            className={styles.finishBtn + " " + styles.alwaysActiveBtn}
-            onClick={() => setFinalized(false)}
-            style={{ flex: 1 }}
-          >
-            Redigera hypotes
-          </button>
-          <button
-            className={styles.finishBtn + " " + styles.alwaysActiveBtn}
+            className={styles.restartBtn}
             onClick={() => {
               setFormData({
                 observation: "",
@@ -196,7 +192,14 @@ const Step4 = ({
             }}
             style={{ flex: 1 }}
           >
-            Börja om
+            Börja om <VscDebugRestart />
+          </button>
+          <button
+            className={styles.finishBtn + " " + styles.alwaysActiveBtn}
+            onClick={() => setFinalized(false)}
+            style={{ flex: 1 }}
+          >
+            Redigera hypotes <MdEdit />
           </button>
         </div>
       )}

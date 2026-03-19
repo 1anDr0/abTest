@@ -4,6 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { TbCircleLetterAFilled } from "react-icons/tb";
 import { TbCircleLetterB } from "react-icons/tb";
 import { HiSlash } from "react-icons/hi2";
+import { MdOutlineBuildCircle } from "react-icons/md";
 
 const Header = ({ visible, onOk }) => {
   const [show, setShow] = useState(visible);
@@ -33,22 +34,34 @@ const Header = ({ visible, onOk }) => {
       <div className="header-flydown-inner">
         <div className="header-star-icon">
           <TbCircleLetterAFilled />
-          <HiSlash />
+          <div className="slash">
+            <HiSlash />
+          </div>
+
           <TbCircleLetterB />
         </div>
         <h2>Bygg din hypotes</h2>
         <div className="info-text">
-          <p className="underSub-1">Fyll i stegen till vänster</p>
-          <p className="underSub-2">
-            - din färdiga hypotes skrivs ihop automatiskt till höger.
+          <p className="underSub-1">
+            Fyll i stegen till vänster så skrivs din färdiga hypotes automatiskt
+            till höger.
           </p>
+          {/* <p className="underSub-2">
+            - din färdiga hypotes skrivs ihop automatiskt till höger.
+          </p> */}
           {/* <p className="underSub-3">
             Fyll i stegen så uppdateras den automatiskt.
           </p> */}
         </div>
         <div className="header-btn-row">
           <button className="header-ok-btn" onClick={onOk}>
-            <span className="header-ok-label"> Börja med observation</span>
+            <span className="header-ok-label">
+              {" "}
+              <div className="build-icon">
+                <MdOutlineBuildCircle />
+              </div>
+              Börja med Insikt / Observation
+            </span>
             <span className="header-ok-arrow">
               <FaArrowRight />
             </span>

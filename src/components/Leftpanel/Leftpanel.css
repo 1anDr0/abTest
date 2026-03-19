@@ -84,6 +84,7 @@
   margin: 0;
   font-size: 18px;
   font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .step-card.active > .step-heading > h2 {
@@ -107,7 +108,8 @@
 
 .step-card.active .step-icon {
   font-size: 28px;
-  color: #ffd54a;
+  /* color: #ffd54a; */
+  color: #ffffff;
   opacity: 0.9;
 }
 

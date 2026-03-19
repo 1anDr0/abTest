@@ -96,6 +96,7 @@ select option {
   display: flex;
   gap: 24px;
   margin-top: 12px;
+  margin-bottom: 20px;
 }
 
 .radioLabel {
@@ -142,5 +143,42 @@ select option {
 }
 
 .finishBtn:not(:disabled) {
+  opacity: 1 !important;
+}
+
+.restartBtn {
+  margin-top: 16px;
+  width: 100%;
+  min-height: 40px;
+  padding: 10px 16px;
+  border: 2px solid #ffffffa4;
+  background: #11182700;
+  color: #ffffffa4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+.restartBtn:hover {
+  transform: translateY(-1px);
+  color: #fffffffd;
+  border: 2px solid #ffffff;
+  /* box-shadow: 0 12px 28px rgba(251, 191, 36, 0.22); */
+}
+.restartBtn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.restartBtn:not(:disabled) {
   opacity: 1 !important;
 }
