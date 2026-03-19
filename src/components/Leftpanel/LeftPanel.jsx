@@ -332,7 +332,7 @@ const LeftPanel = ({
 
                       setTimeout(() => {
                         setFinalized(true);
-                        setStep4Open(false);
+                        setStep4Open(true);
                         setTransitioningStep(null);
                       }, 300);
                     } else {

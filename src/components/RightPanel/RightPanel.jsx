@@ -64,7 +64,7 @@ export default function RightPanel({
 
   const hypothesisText = `Vi har observerat att ${content.observation}, vilket bekräftas av ${content.evidence}.
 Detta tyder på att ${content.problem}.
-Vi tror därför att om vi ${content.change} för ${content.target} på ${content.where}, kommer det att ${content.directionText} ${content.effect}.`;
+Vi tror därför att om vi ${content.change} för ${content.target} på ${content.where}, kommer att ${content.directionText} ${content.effect}.`;
 
   const handleCopy = async () => {
     try {
@@ -125,7 +125,7 @@ Vi tror därför att om vi ${content.change} för ${content.target} på ${conten
                 kommer att{" "}
                 {content.directionText && (
                   <span className="direction-text">
-                    {content.directionText}{" "}
+                    {content.directionText}
                   </span>
                 )}
                 <b>{content.effect}</b>.

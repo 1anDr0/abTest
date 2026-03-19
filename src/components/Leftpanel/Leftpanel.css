@@ -54,11 +54,12 @@
   align-items: center;
   border-radius: 12px;
   opacity: 0.5;
-  cursor: default;
+
+  cursor: pointer;
 }
 
 .step-card.collapsed.disabled {
-  cursor: pointer;
+  cursor: default;
   opacity: 0.6;
 }
 
