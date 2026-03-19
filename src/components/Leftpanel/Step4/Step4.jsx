@@ -11,6 +11,8 @@ const Step4 = ({
   setStepOpen,
   setCurrentStep,
   setShowHeader,
+  setCompletedSteps,
+  setTransitioningStep,
 }) => {
   // Kontrollera om en riktig KPI är vald
   const isKpiSelected =
@@ -187,6 +189,10 @@ const Step4 = ({
               setFinalized(false);
               if (typeof setCurrentStep === "function") setCurrentStep(1);
               if (typeof setShowHeader === "function") setShowHeader(false);
+              if (typeof setCompletedSteps === "function")
+                setCompletedSteps([]);
+              if (typeof setTransitioningStep === "function")
+                setTransitioningStep(null);
             }}
             style={{ flex: 1 }}
           >

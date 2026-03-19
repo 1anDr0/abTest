@@ -341,6 +341,8 @@ const LeftPanel = ({
                   setStepOpen={setStep4Open}
                   setCurrentStep={setCurrentStep}
                   setShowHeader={setShowHeader}
+                  setCompletedSteps={setCompletedSteps}
+                  setTransitioningStep={setTransitioningStep}
                 />
               </div>
             )}
