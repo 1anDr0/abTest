@@ -21,7 +21,7 @@
 .hypothesis-box {
   position: relative;
   z-index: 10;
-  background: #ffffff36;
+  background: #ffffff5d;
   padding: 1% 8% 10% 8%;
   border: 1px solid rgba(17, 24, 39, 0.05);
   border-radius: 12px;
@@ -112,6 +112,7 @@
 .hypothesis-box.finalized .direction-text,
 .hypothesis-box.finalized h3 {
   color: #000000 !important;
+  background-color: rgb(255, 255, 255);
 }
 
 .hypothesis-box.finalized .hypothesis-step {
@@ -137,7 +138,7 @@
   width: 30px;
   height: 30px;
   padding: 0;
-  border: 1px solid #ffffff00;
+  border: 1px solid #00000015;
   border-radius: 999px;
   display: flex;
   align-items: center;
@@ -156,7 +157,7 @@
 .copy-btn:hover {
   background: #ffffff;
   color: #111827;
-  box-shadow: 0 8px 18px rgba(17, 24, 39, 0.12);
+  box-shadow: 10px 10px 10px 0 rgba(21, 19, 44, 0.075);
   transform: translateY(-1px);
 }
 
@@ -171,5 +172,5 @@
   white-space: nowrap;
   pointer-events: none;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 10px 10px 10px 0 rgba(21, 19, 44, 0.075);
 }
