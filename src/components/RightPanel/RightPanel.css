@@ -1,4 +1,3 @@
-/* basic layout for right panel container */
 .rightpanel-container {
   padding: 0 clamp(30px, 3.5vw, 56px);
   display: flex;
@@ -6,7 +5,7 @@
   justify-content: center;
   line-height: 1.6rem;
 }
-/* hidden header element to reserve vertical space */
+
 .header-placeholder {
   visibility: hidden;
 }
@@ -16,49 +15,45 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 0 1rem 0;
+  padding: 1rem 0;
 }
 
-/* actual white card holding the hypothesis content */
 .hypothesis-box {
+  position: relative;
+  z-index: 10;
   background: #ffffff36;
   padding: 1% 8% 10% 8%;
+  border: 1px solid rgba(17, 24, 39, 0.05);
   border-radius: 12px;
   box-shadow: 10px 10px 10px 0 rgba(21, 19, 44, 0.075);
-  position: relative;
-  border: 1px solid rgba(17, 24, 39, 0.05);
-  z-index: 10;
 }
 
 .rightpanel-container h3 {
-  margin-top: 0px;
+  margin-top: 0;
   margin-bottom: 8%;
   font-size: 12px;
-  text-align: center;
   font-weight: 800;
+  text-align: center;
 }
 
-/* steps wrapper with vertical line */
-
 .hypothesis-steps::before {
-  display: none; /* colored segments replace the base line */
+  display: none;
 }
 
 .hypothesis-step {
   position: relative;
-  font-size: 15px;
   padding-left: 20px;
+  font-size: 15px;
 }
 
-/* base colored segment behind each step */
 .hypothesis-step::after {
   content: "";
   position: absolute;
   left: -4px;
   top: 0;
   bottom: 0;
-  width: 3px; /* slightly thicker line */
-  background: rgba(0, 0, 0, 0.2);
+  width: 3px;
+  background: rgba(0, 0, 0, 0.08);
   border-radius: 0;
 }
 
@@ -66,41 +61,51 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
 }
+
 .hypothesis-step:last-child::after {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-}
-
-.hypothesis-step.completed {
-  opacity: 0.68;
-}
-/* no before element for completed steps */
-.hypothesis-step.completed::after {
-  background: #22c55e;
-}
-.hypothesis-step.current {
-  opacity: 1; /* current step full opacity */
-}
-/* no before element for current step */
-.hypothesis-step.current::after {
-  background: #000000;
-}
-
-.hypothesis-box.finalized .hypothesis-step.current::after {
-  background: #3ec858 !important;
 }
 
 .hypothesis-step.inactive {
   opacity: 0.38;
 }
 
-.direction-text {
-  color: #000000;
-  font-weight: 600;
-  margin-right: 4px;
+.hypothesis-step.completed {
+  opacity: 0.68;
 }
 
-/* when hypothesis is finished we switch all text to black */
+.hypothesis-step.completed::after {
+  background: #22c55e;
+}
+
+.hypothesis-step.current {
+  opacity: 1;
+}
+
+.hypothesis-step.current::after {
+  background: #12043d;
+}
+
+.hypothesis-step.current p {
+  margin: 0;
+  font-size: 15px !important;
+  font-weight: 400;
+  color: #000000;
+}
+
+.hypothesis-step.current b {
+  font-size: 15px !important;
+  font-weight: 600;
+  color: #290ea1 !important;
+}
+
+.direction-text {
+  margin-right: 4px;
+  font-weight: 600;
+  color: #000000;
+}
+
 .hypothesis-box.finalized,
 .hypothesis-box.finalized p,
 .hypothesis-box.finalized b,
@@ -109,25 +114,16 @@
   color: #000000 !important;
 }
 
-/* when finalized we also cancel the dimming on completed steps */
 .hypothesis-box.finalized .hypothesis-step {
   opacity: 1 !important;
 }
 
-/* override previous empty file to ensure preexisting styles don't conflict */
-
-p .hypothesis-step {
-  font-size: 15px !important;
-
-  font-weight: 00;
-  color: #b5b9c2;
-  margin: 0;
+.hypothesis-box.finalized .hypothesis-step.current::after {
+  background: #3ec858 !important;
 }
 
-b .hypothesis-step {
-  font-size: 15px !important;
-  font-weight: 600;
-  color: #1b0461fb;
+.hypothesis-box.finalized h3 {
+  opacity: 0.4;
 }
 
 .copy-hypothesis-bottom {
@@ -137,20 +133,19 @@ b .hypothesis-step {
   z-index: 2;
 }
 
-/* Only icon, no text */
 .copy-btn {
-  border: 1px solid #ffffff9c;
-  background: rgba(255, 255, 255, 0.5);
-  color: #374151;
   width: 30px;
   height: 30px;
-  border-radius: 999px;
-  font-size: 14px;
-  cursor: pointer;
   padding: 0;
+  border: 1px solid #ffffff00;
+  border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgba(255, 255, 255, 0.5);
+  color: #374151;
+  font-size: 14px;
+  cursor: pointer;
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
@@ -159,26 +154,22 @@ b .hypothesis-step {
 }
 
 .copy-btn:hover {
-  color: #111827;
   background: #ffffff;
+  color: #111827;
   box-shadow: 0 8px 18px rgba(17, 24, 39, 0.12);
   transform: translateY(-1px);
 }
 
 .copy-feedback {
   position: absolute;
-  bottom: 50px;
   right: 0;
+  bottom: 50px;
+  padding: 4px 14px;
   background: #fffefe;
   color: #000000;
   font-size: 12px;
-  padding: 4px 14px;
+  white-space: nowrap;
+  pointer-events: none;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.hypothesis-box.finalized h3 {
-  opacity: 0.4;
 }

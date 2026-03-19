@@ -1,32 +1,33 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./HypotesBuilder.css";
 import LeftPanel from "../Leftpanel/LeftPanel";
 import RightPanel from "../RightPanel/RightPanel";
 
 const HypotesBuilder = ({ currentStep, setCurrentStep }) => {
-  // whether the hypothesis has been explicitly finished by the user
   const [finalized, setFinalized] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
 
   const [formData, setFormData] = useState({
     // Steg 1
     observation: "",
     evidence: "Välj källa",
     evidenceCustom: "",
+
     // Steg 2
     problem: "",
+
     // Steg 3
     change: "",
     target: "Välj målgrupp",
+    targetCustom: "",
     where: "Välj plats på sidan",
+    whereCustom: "",
+
     // Steg 4
     effect: "Välj KPI/effekt",
+    effectCustom: "",
     direction: "",
   });
-
-  // Uppdatera formData
-  const handleFormData = (data) => {
-    setFormData(data);
-  };
 
   return (
     <div className="page">
@@ -37,20 +38,19 @@ const HypotesBuilder = ({ currentStep, setCurrentStep }) => {
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}
               formData={formData}
-              setFormData={handleFormData}
+              setFormData={setFormData}
               finalized={finalized}
               setFinalized={setFinalized}
+              showHeader={showHeader}
+              setShowHeader={setShowHeader}
             />
           </div>
+
           <RightPanel
             currentStep={currentStep}
             formData={formData}
             finalized={finalized}
-            showHeader={
-              typeof window !== "undefined" && window.showHeader !== undefined
-                ? window.showHeader
-                : false
-            }
+            showHeader={showHeader}
           />
         </div>
       </div>

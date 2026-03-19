@@ -25,11 +25,8 @@ const Step4 = ({
   const complete = formData.effect && formData.effect.trim() !== "";
 
   const handleFinish = () => {
-    if (!isKpiSelected) return; // Förhindra klick om ingen KPI är vald
-    setTimeout(() => {
-      setFinalized(true);
-      if (setStepOpen) setStepOpen(false);
-    }, 200);
+    if (!isKpiSelected || !isDirectionSelected) return;
+    setFinalized(true);
   };
 
   const effectRef = useRef(null);

@@ -1,12 +1,3 @@
-.inactive-heading {
-  opacity: 0.5;
-}
-.step-icon.inactive {
-  color: #3ec858 !important;
-  opacity: 0.5 !important;
-  font-size: 22px !important;
-}
-
 .leftpanel-wrapper {
   min-height: 100vh;
   padding: 0 clamp(30px, 4vw, 80px);
@@ -14,7 +5,6 @@
   flex-direction: column;
   box-sizing: border-box;
   color: white;
-  /* margin-top: 1rem; */
 }
 
 .leftpanel {
@@ -23,20 +13,10 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-
-  margin: 1rem 0 1rem 0;
+  margin: 1rem 0;
 }
 
-.leftpanel-wrapper {
-  @media (max-width: 900px) {
-    min-height: 80vh;
-  }
-}
-
-.leftpanel-header {
-  align-self: stretch;
-}
-
+.leftpanel-header,
 .leftpanel-footer {
   align-self: stretch;
 }
@@ -47,16 +27,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   padding: 0;
   margin: 0;
 }
 
+/* Step cards */
 .step-card {
-  padding: 0.8% 0;
   width: 100%;
   box-sizing: border-box;
   border-radius: 16px;
+  padding: 0.8% 0;
   transition:
     background 0.2s ease,
     opacity 0.2s ease,
@@ -71,9 +52,9 @@
 .step-card.collapsed {
   display: flex;
   align-items: center;
+  border-radius: 12px;
   opacity: 0.5;
   cursor: default;
-  border-radius: 12px;
 }
 
 .step-card.collapsed.disabled {
@@ -86,40 +67,28 @@
   transform: translateX(2px);
 }
 
-/* prevent hover effect on steps that are not clickable */
 .step-card.collapsed.disabled:hover {
   opacity: 0.6;
   transform: none;
 }
+
+/* Step heading */
 .step-heading {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.step-icon {
-  font-size: 22px;
-  flex-shrink: 0;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.step-card.active .step-icon {
-  color: #ffd900;
-  opacity: 0.9;
-  font-size: 28px;
-}
-
-h2 {
-  font-size: 18px;
-
-  font-weight: 700;
+.step-heading h2 {
   margin: 0;
+  font-size: 18px;
+  font-weight: 700;
 }
 
 .step-card.active > .step-heading > h2 {
   font-size: 22px;
   font-weight: 800;
-  color: #fffffffb;
+  color: rgba(255, 255, 255, 0.98);
 }
 
 .step-card.active > .step-heading > h2.inactive-heading {
@@ -128,28 +97,50 @@ h2 {
   opacity: 0.5;
 }
 
-/* Always green for completed steps, even when finalized */
-.step-icon.completed {
-  color: #3ec858 !important;
-  font-size: 22px !important;
+/* Icons */
+.step-icon {
+  flex-shrink: 0;
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-/* Tar bort skugga från next-btn */
+.step-card.active .step-icon {
+  font-size: 28px;
+  color: #ffd54a;
+  opacity: 0.9;
+}
+
+.step-icon.completed {
+  font-size: 22px !important;
+  color: #3ec858 !important;
+}
+
+.step-icon.inactive {
+  font-size: 22px !important;
+  color: #3ec858 !important;
+  opacity: 0.5 !important;
+}
+
+.inactive-heading {
+  opacity: 0.5;
+}
+
+/* Next button */
 .next-btn {
-  margin-top: 1rem;
   width: 100%;
   min-height: 40px;
+  margin-top: 1rem;
   padding: 10px 16px;
   border: none;
-  background: linear-gradient(135deg, #22d3ee, #6366f1);
-  color: white;
+  border-radius: 999px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  background: linear-gradient(135deg, #22d3ee, #6366f1);
+  color: white;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(34, 211, 238, 0.18);
-  border-radius: 999px;
   font-size: 14px;
   font-weight: 600;
   transition:
@@ -157,21 +148,22 @@ h2 {
     box-shadow 0.2s ease,
     opacity 0.2s ease;
 }
-.next-btn:disabled {
-  opacity: 0.38;
-  cursor: not-allowed;
-  box-shadow: none;
-}
 
 .next-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 12px 28px rgba(34, 211, 238, 0.22);
 }
 
+.next-btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 .next-arrow {
-  font-size: 10px;
   display: flex;
   align-items: center;
+  font-size: 10px;
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -179,46 +171,40 @@ h2 {
   transform: translateX(8px) scale(1.15);
 }
 
-.line {
-  position: relative;
-  margin-left: 12px;
-  padding-left: 32px;
-}
-
-.line::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 1.5rem;
-  bottom: 1rem;
-  width: 2px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(180, 190, 255, 0.45) 100%
-  );
-  border-radius: 999px;
-}
-
+/* Step vertical line */
+.line,
 .line4 {
   position: relative;
   margin-left: 12px;
   padding-left: 32px;
 }
 
+.line::before,
 .line4::before {
   content: "";
   position: absolute;
   left: 0;
   top: 1.5rem;
-  bottom: 7.4rem;
   width: 2px;
+  border-radius: 999px;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.08);
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.9) 0%,
     rgba(180, 190, 255, 0.45) 100%
   );
-  border-radius: 999px;
+}
+
+.line::before {
+  bottom: 1rem;
+}
+
+.line4::before {
+  bottom: 7.4rem;
+}
+
+@media (max-width: 900px) {
+  .leftpanel-wrapper {
+    min-height: 80vh;
+  }
 }

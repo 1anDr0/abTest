@@ -1,12 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Leftpanel.css";
 import Step1 from "./Step1/Step1";
 import Step2 from "./Step2/Step2";
 import Step3 from "./Step3/Step3";
 import Step4 from "./Step4/Step4";
 import Header from "./Header/Header";
-
-// import Footer from "./Header/Footer";
 
 import { TbCircleNumber1 } from "react-icons/tb";
 import { TbCircleNumber2 } from "react-icons/tb";
@@ -23,53 +21,28 @@ const LeftPanel = ({
   setFormData,
   finalized,
   setFinalized,
+  showHeader,
+  setShowHeader,
 }) => {
-  // Header ska synas från start
-  const [showHeader, setShowHeader] = useState(true);
-  // Gör showHeader globalt så RightPanel kan läsa det
-  if (typeof window !== "undefined") window.showHeader = showHeader;
-
-  // Sätt finalized till true när headern visas (exempel)
-  useEffect(() => {
-    if (showHeader) {
-      setFinalized(true);
-    }
-  }, [showHeader, setFinalized]);
-  // Håller koll på vilka steg som är "avklarade" (när användaren tryckt Nästa)
+  const [transitioningStep, setTransitioningStep] = useState(null);
   const [completedSteps, setCompletedSteps] = useState([]);
-  // Counter för att tvinga remount av Step1 när headern stängs
-  const step1KeyCounter = useRef(0);
-  // State för att hantera om steg 4 är öppet
   const [step4Open, setStep4Open] = useState(true);
 
   useEffect(() => {
-    if (!showHeader && currentStep === 1) {
-      step1KeyCounter.current += 1;
+    if (typeof window !== "undefined") {
+      window.showHeader = showHeader;
     }
-  }, [showHeader, currentStep]);
+  }, [showHeader]);
 
-  // Mark all steps as completed when hypothesis is finalized
   useEffect(() => {
     if (finalized) {
       setCompletedSteps([1, 2, 3, 4]);
     }
   }, [finalized]);
 
-  // Dölj header när observation fylls i
-  useEffect(() => {
-    if (
-      showHeader &&
-      formData.observation &&
-      formData.observation.trim() !== ""
-    ) {
-      setShowHeader(false);
-    }
-  }, [formData.observation, showHeader]);
-
-  // helper to check if a given step's required fields are filled
   const isStepComplete = (step) => {
     switch (step) {
-      case 1:
+      case 1: {
         const hasObservation =
           formData.observation && formData.observation.trim() !== "";
         const evidenceValue = (formData.evidence || "").toLowerCase();
@@ -80,9 +53,12 @@ const LeftPanel = ({
           !needsCustom ||
           (formData.evidenceCustom && formData.evidenceCustom.trim() !== "");
         return hasObservation && hasEvidence && hasCustom;
+      }
+
       case 2:
         return formData.problem && formData.problem.trim() !== "";
-      case 3:
+
+      case 3: {
         const hasChange = formData.change && formData.change.trim() !== "";
         const targetValue = (formData.target || "").toLowerCase();
         const hasTarget = targetValue !== "" && targetValue !== "välj målgrupp";
@@ -90,6 +66,7 @@ const LeftPanel = ({
         const hasTargetCustom =
           !needsTargetCustom ||
           (formData.targetCustom && formData.targetCustom.trim() !== "");
+
         const whereValue = (formData.where || "").toLowerCase();
         const hasWhere =
           whereValue !== "" && whereValue !== "välj plats på sidan";
@@ -97,6 +74,7 @@ const LeftPanel = ({
         const hasWhereCustom =
           !needsWhereCustom ||
           (formData.whereCustom && formData.whereCustom.trim() !== "");
+
         return (
           hasChange &&
           hasTarget &&
@@ -104,7 +82,9 @@ const LeftPanel = ({
           hasWhere &&
           hasWhereCustom
         );
-      case 4:
+      }
+
+      case 4: {
         const effectValue = (formData.effect || "").toLowerCase();
         const hasEffect =
           effectValue !== "" && effectValue !== "välj kpi/effekt";
@@ -113,6 +93,8 @@ const LeftPanel = ({
           !needsEffectCustom ||
           (formData.effectCustom && formData.effectCustom.trim() !== "");
         return hasEffect && hasEffectCustom;
+      }
+
       default:
         return false;
     }
@@ -121,35 +103,41 @@ const LeftPanel = ({
   const allComplete = [1, 2, 3, 4].every(isStepComplete);
   const canGoNext = isStepComplete(currentStep);
 
-  // Lås alla steg om hypotesen är färdigställd
+  const markStepComplete = (step) => {
+    setCompletedSteps((prev) => (prev.includes(step) ? prev : [...prev, step]));
+  };
+
+  const goToNextStep = (step) => {
+    markStepComplete(step);
+    setTransitioningStep(step);
+
+    setTimeout(() => {
+      setCurrentStep(step + 1);
+      setTransitioningStep(null);
+    }, 300);
+  };
+
   const handleStepClick = (step) => {
-    if (finalized) return;
+    if (showHeader || finalized) return;
     if (step <= currentStep || allComplete) {
       setCurrentStep(step);
     }
   };
 
-  // Hjälpfunktion för att markera ett steg som klart när man går vidare
-  const markStepComplete = (step) => {
-    setCompletedSteps((prev) => (prev.includes(step) ? prev : [...prev, step]));
+  const handleStart = () => {
+    setShowHeader(false);
+    setCurrentStep(1);
+    setFinalized(false);
+    setCompletedSteps([]);
+    setStep4Open(true);
   };
 
   return (
     <div className="leftpanel-wrapper">
-      {showHeader && (
-        <Header
-          visible={true}
-          onOk={() => {
-            setShowHeader(false);
-            setCurrentStep(1);
-            setFinalized(false);
-            setCompletedSteps([]);
-          }}
-        />
-      )}
+      {showHeader && <Header visible={true} onOk={handleStart} />}
+
       <div className="leftpanel">
         <div className="steps-container">
-          {/* steg 1 */}
           <div
             className={`step-card ${
               currentStep === 1
@@ -157,16 +145,20 @@ const LeftPanel = ({
                   ? "collapsed disabled"
                   : "active"
                 : "collapsed"
-            } ${1 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled finalized" : ""}`}
+            } ${1 > currentStep && !allComplete ? "disabled" : ""} ${
+              finalized ? "disabled finalized" : ""
+            }`}
             style={finalized ? { cursor: "default" } : {}}
             onClick={() => {
-              if (!finalized) {
+              if (!showHeader && !finalized) {
                 setCurrentStep(1);
               }
             }}
           >
             <div className="step-heading">
-              {currentStep === 1 ? (
+              {transitioningStep === 1 ? (
+                <PiSealCheckBold className="step-icon completed" />
+              ) : currentStep === 1 && !showHeader ? (
                 <MdOutlineBuildCircle className="step-icon active" />
               ) : completedSteps.includes(1) ? (
                 <PiSealCheckBold className="step-icon completed" />
@@ -175,6 +167,7 @@ const LeftPanel = ({
               )}
               <h2>Insikt / Observation</h2>
             </div>
+
             {currentStep === 1 && !showHeader && (
               <div className="line">
                 <Step1
@@ -188,15 +181,10 @@ const LeftPanel = ({
                   disabled={!canGoNext}
                   onClick={(e) => {
                     e.stopPropagation();
-                    if (canGoNext) {
-                      markStepComplete(1);
-                      setTimeout(() => {
-                        setCurrentStep(2);
-                      }, 200);
-                    }
+                    if (canGoNext) goToNextStep(1);
                   }}
                 >
-                  Nästa steg{" "}
+                  Nästa steg
                   <span className="next-arrow">
                     <FaArrowRight />
                   </span>
@@ -204,16 +192,24 @@ const LeftPanel = ({
               </div>
             )}
           </div>
-          {/* steg 2 */}
+
           <div
-            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 2 ? "active" : "collapsed"} ${2 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled finalized" : ""}`}
+            className={`step-card ${
+              showHeader
+                ? "collapsed disabled"
+                : currentStep === 2
+                  ? "active"
+                  : "collapsed"
+            } ${2 > currentStep && !allComplete ? "disabled" : ""} ${
+              finalized ? "disabled finalized" : ""
+            }`}
             style={finalized ? { cursor: "default" } : {}}
-            onClick={() => {
-              if (!showHeader && !finalized) handleStepClick(2);
-            }}
+            onClick={() => handleStepClick(2)}
           >
             <div className="step-heading">
-              {currentStep === 2 ? (
+              {transitioningStep === 2 ? (
+                <PiSealCheckBold className="step-icon completed" />
+              ) : currentStep === 2 ? (
                 <MdOutlineBuildCircle className="step-icon active" />
               ) : completedSteps.includes(2) ? (
                 <PiSealCheckBold className="step-icon completed" />
@@ -222,6 +218,7 @@ const LeftPanel = ({
               )}
               <h2>Tolkning</h2>
             </div>
+
             {!showHeader && currentStep === 2 && (
               <div className="line">
                 <Step2 formData={formData} setFormData={setFormData} />
@@ -230,13 +227,10 @@ const LeftPanel = ({
                   disabled={!canGoNext}
                   onClick={(e) => {
                     e.stopPropagation();
-                    if (canGoNext) {
-                      markStepComplete(2);
-                      setTimeout(() => setCurrentStep(3), 200);
-                    }
+                    if (canGoNext) goToNextStep(2);
                   }}
                 >
-                  Nästa steg{" "}
+                  Nästa steg
                   <span className="next-arrow">
                     <FaArrowRight />
                   </span>
@@ -244,16 +238,24 @@ const LeftPanel = ({
               </div>
             )}
           </div>
-          {/* steg 3 */}
+
           <div
-            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 3 ? "active" : "collapsed"} ${3 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled finalized" : ""}`}
+            className={`step-card ${
+              showHeader
+                ? "collapsed disabled"
+                : currentStep === 3
+                  ? "active"
+                  : "collapsed"
+            } ${3 > currentStep && !allComplete ? "disabled" : ""} ${
+              finalized ? "disabled finalized" : ""
+            }`}
             style={finalized ? { cursor: "default" } : {}}
-            onClick={() => {
-              if (!showHeader && !finalized) handleStepClick(3);
-            }}
+            onClick={() => handleStepClick(3)}
           >
             <div className="step-heading">
-              {currentStep === 3 ? (
+              {transitioningStep === 3 ? (
+                <PiSealCheckBold className="step-icon completed" />
+              ) : currentStep === 3 ? (
                 <MdOutlineBuildCircle className="step-icon active" />
               ) : completedSteps.includes(3) ? (
                 <PiSealCheckBold className="step-icon completed" />
@@ -262,41 +264,44 @@ const LeftPanel = ({
               )}
               <h2>Förändring</h2>
             </div>
+
             {!showHeader && currentStep === 3 && (
-              <>
-                <div className="line">
-                  <Step3 formData={formData} setFormData={setFormData} />
-                  <button
-                    className="next-btn"
-                    disabled={!canGoNext}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (canGoNext) {
-                        markStepComplete(3);
-                        setTimeout(() => {
-                          setCurrentStep(4);
-                        }, 200);
-                      }
-                    }}
-                  >
-                    Nästa steg{" "}
-                    <span className="next-arrow">
-                      <FaArrowRight />
-                    </span>
-                  </button>
-                </div>
-              </>
+              <div className="line">
+                <Step3 formData={formData} setFormData={setFormData} />
+                <button
+                  className="next-btn"
+                  disabled={!canGoNext}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (canGoNext) goToNextStep(3);
+                  }}
+                >
+                  Nästa steg
+                  <span className="next-arrow">
+                    <FaArrowRight />
+                  </span>
+                </button>
+              </div>
             )}
           </div>
-          {/* steg 4 */}
+
           <div
-            className={`step-card ${showHeader ? "collapsed disabled" : currentStep === 4 ? "active" : "collapsed"} ${4 > currentStep && !allComplete ? "disabled" : ""} ${finalized ? "disabled" : ""}`}
-            onClick={() => {
-              if (!showHeader && !finalized) handleStepClick(4);
-            }}
+            className={`step-card ${
+              showHeader
+                ? "collapsed disabled"
+                : currentStep === 4
+                  ? "active"
+                  : "collapsed"
+            } ${4 > currentStep && !allComplete ? "disabled" : ""} ${
+              finalized ? "disabled" : ""
+            }`}
+            onClick={() => handleStepClick(4)}
+            style={finalized ? { cursor: "default" } : {}}
           >
             <div className="step-heading">
-              {finalized ? (
+              {transitioningStep === 4 ? (
+                <PiSealCheckBold className="step-icon completed" />
+              ) : finalized ? (
                 <PiSealCheckBold
                   className={
                     currentStep === 4
@@ -313,6 +318,7 @@ const LeftPanel = ({
               )}
               <h2 className={finalized ? "inactive-heading" : ""}>Effekt</h2>
             </div>
+
             {!showHeader && currentStep === 4 && step4Open && (
               <div className="line4">
                 <Step4
@@ -320,8 +326,18 @@ const LeftPanel = ({
                   setFormData={setFormData}
                   finalized={finalized}
                   setFinalized={(val) => {
-                    setFinalized(val);
-                    if (val) markStepComplete(4);
+                    if (val) {
+                      markStepComplete(4);
+                      setTransitioningStep(4);
+
+                      setTimeout(() => {
+                        setFinalized(true);
+                        setStep4Open(false);
+                        setTransitioningStep(null);
+                      }, 300);
+                    } else {
+                      setFinalized(false);
+                    }
                   }}
                   setStepOpen={setStep4Open}
                 />
@@ -330,7 +346,6 @@ const LeftPanel = ({
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
     </div>
   );
 };

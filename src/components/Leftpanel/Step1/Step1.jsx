@@ -14,36 +14,12 @@ const Step1 = ({ formData, setFormData, showHeader, currentStep }) => {
   };
 
   const obsRef = useRef(null);
-  // Sätt fokus när headern stängs och Step1 visas
-  // Sätt fokus ENDAST när showHeader går från true till false och currentStep är 1
-  const prevShowHeader = useRef(showHeader);
+  // Fokusera textarea direkt när Step1 renderas
   useEffect(() => {
-    // Fokusera om header stängs (vanligt fall)
-    if (
-      prevShowHeader.current &&
-      !showHeader &&
-      currentStep === 1 &&
-      obsRef.current
-    ) {
-      requestAnimationFrame(() => {
-        obsRef.current && obsRef.current.focus();
-      });
+    if (obsRef.current) {
+      obsRef.current.focus();
     }
-    // Fokusera om global flagga är satt (t.ex. efter Kom igång)
-    if (
-      typeof window.focusStep1Textarea !== "undefined" &&
-      window.focusStep1Textarea &&
-      !showHeader &&
-      currentStep === 1 &&
-      obsRef.current
-    ) {
-      requestAnimationFrame(() => {
-        obsRef.current && obsRef.current.focus();
-        window.focusStep1Textarea = false;
-      });
-    }
-    prevShowHeader.current = showHeader;
-  }, [showHeader, currentStep]);
+  }, []);
 
   return (
     <div className={styles.steps}>

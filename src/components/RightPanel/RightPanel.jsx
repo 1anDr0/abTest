@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { FaRegCopy } from "react-icons/fa6";
 import "./RightPanel.css";
 
@@ -8,125 +8,131 @@ export default function RightPanel({
   finalized,
   showHeader,
 }) {
-  // State for copy feedback
   const [copied, setCopied] = useState(false);
 
-  // Compose the hypothesis text for copying
-  const hypothesisText = `Vi har observerat att ${formData.observation || "25% av användare inte klickar på CTA-knappen"}, vilket bekräftas av ${formData.evidence === "Annat" ? formData.evidenceCustom || "egen källa" : formData.evidence ? formData.evidence.charAt(0).toLowerCase() + formData.evidence.slice(1) : ""}.
-      Detta tyder på att ${formData.problem || "Användare uppfattar inte CTA:n som relevant eller värdefull i första intrycket"}.
-      Vi tror därför att om vi ${formData.change || "ändra CTA-texten från “Slutför köp” till “Få din beställning idag"} för ${formData.target === "Annat" ? formData.targetCustom || "ange egen målgrupp" : formData.target ? formData.target.charAt(0).toLowerCase() + formData.target.slice(1) : ""} på ${formData.where === "Annat" ? formData.whereCustom || "ange egen plats" : formData.where ? formData.where.charAt(0).toLowerCase() + formData.where.slice(1) : ""},${formData.direction ? (formData.direction === "increase" ? " kommer att öka " : " kommer att minska ") : ""}${formData.effect === "Annat" ? formData.effectCustom || "Annat" : formData.effect ? formData.effect.charAt(0).toLowerCase() + formData.effect.slice(1) : ""}.`;
+  const normalizeValue = (value, customValue, fallback = "") => {
+    if (value === "Annat") return customValue?.trim() || fallback;
+    if (!value) return fallback;
+    return value.charAt(0).toLowerCase() + value.slice(1);
+  };
 
-  // Handle copy to clipboard with delay
-  const handleCopy = () => {
-    setTimeout(() => {
-      navigator.clipboard.writeText(hypothesisText);
+  const content = useMemo(() => {
+    return {
+      observation:
+        formData.observation || "25% av användare inte klickar på CTA-knappen",
+
+      evidence: normalizeValue(
+        formData.evidence,
+        formData.evidenceCustom,
+        "egen källa",
+      ),
+
+      problem:
+        formData.problem ||
+        "användare uppfattar inte CTA:n som relevant eller värdefull i första intrycket",
+
+      change:
+        formData.change ||
+        "ändrar CTA-texten från “Slutför köp” till “Få din beställning idag”",
+
+      target: normalizeValue(
+        formData.target,
+        formData.targetCustom,
+        "ange egen målgrupp",
+      ),
+
+      where: normalizeValue(
+        formData.where,
+        formData.whereCustom,
+        "ange egen plats",
+      ),
+
+      effect: normalizeValue(
+        formData.effect,
+        formData.effectCustom,
+        "vald KPI",
+      ),
+
+      directionText:
+        formData.direction === "increase"
+          ? "öka"
+          : formData.direction === "decrease"
+            ? "minska"
+            : "",
+    };
+  }, [formData]);
+
+  const hypothesisText = `Vi har observerat att ${content.observation}, vilket bekräftas av ${content.evidence}.
+Detta tyder på att ${content.problem}.
+Vi tror därför att om vi ${content.change} för ${content.target} på ${content.where}, kommer det att ${content.directionText} ${content.effect}.`;
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(hypothesisText);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
-    }, 200);
+    } catch (error) {
+      console.error("Kunde inte kopiera hypotesen:", error);
+    }
   };
-  // derive status for each step: 'completed' (behind current), 'current', or 'inactive'
+
   const statusFor = (step) => {
-    if (currentStep > step) return "completed";
-    if (currentStep === step) return "current";
+    if (showHeader) return "inactive";
+
+    if (finalized) return "completed";
+
+    if (step === currentStep) return "current";
+    if (step < currentStep) return "completed";
+
     return "inactive";
   };
 
+  console.log({ currentStep, showHeader, finalized });
+
   return (
     <div className="rightpanel-container">
-      {/* spacer matching left header height */}
       <div className="header header-placeholder" />
+
       <div className="hypothesis-wrapper">
         <div className={`hypothesis-box${finalized ? " finalized" : ""}`}>
-          {/* Döljer rubrik och copy när headern visas */}
           <h3>
             {finalized ? "Hypotes (färdigställd)" : "Din hypotes (utkast)"}
           </h3>
 
           <div className="hypothesis-steps">
-            <div
-              className={`hypothesis-step ${showHeader ? "inactive" : statusFor(1)}`}
-            >
+            <div className={`hypothesis-step ${statusFor(1)}`}>
               <p>
-                Vi har observerat att{" "}
-                <b>
-                  {formData.observation ||
-                    "25% av användare inte klickar på CTA-knappen"}
-                </b>
-                , vilket bekräftas av{" "}
-                <b>
-                  {" "}
-                  {formData.evidence === "Annat"
-                    ? formData.evidenceCustom || "egen källa"
-                    : formData.evidence
-                      ? formData.evidence.charAt(0).toLowerCase() +
-                        formData.evidence.slice(1)
-                      : ""}
-                </b>
-                .
+                Vi har observerat att <b>{content.observation}</b>, vilket
+                bekräftas av <b>{content.evidence}</b>.
               </p>
             </div>
 
             <div className={`hypothesis-step ${statusFor(2)}`}>
               <p>
-                Detta tyder på att{" "}
-                <b>
-                  {formData.problem ||
-                    "användare uppfattar inte CTA:n som relevant eller värdefull i första intrycket"}
-                </b>
-                .
+                Detta tyder på att <b>{content.problem}</b>.
               </p>
             </div>
 
             <div className={`hypothesis-step ${statusFor(3)}`}>
               <p>
-                Vi tror därför att om vi{" "}
-                <b>
-                  {formData.change ||
-                    "ändra CTA-texten från “Slutför köp” till “Få din beställning idag"}
-                </b>{" "}
-                för{" "}
-                <b>
-                  {formData.target === "Annat"
-                    ? formData.targetCustom || "ange egen målgrupp"
-                    : formData.target
-                      ? formData.target.charAt(0).toLowerCase() +
-                        formData.target.slice(1)
-                      : ""}
-                </b>{" "}
-                på{" "}
-                <b>
-                  {formData.where === "Annat"
-                    ? formData.whereCustom || "ange egen plats"
-                    : formData.where
-                      ? formData.where.charAt(0).toLowerCase() +
-                        formData.where.slice(1)
-                      : ""}
-                </b>
-                .
+                Vi tror därför att om vi <b>{content.change}</b> för{" "}
+                <b>{content.target}</b> på <b>{content.where}</b>.
               </p>
             </div>
 
             <div className={`hypothesis-step ${statusFor(4)}`}>
               <p>
                 kommer att{" "}
-                {formData.direction === "increase" && (
-                  <span className="direction-text">öka</span>
+                {content.directionText && (
+                  <span className="direction-text">
+                    {content.directionText}{" "}
+                  </span>
                 )}
-                {formData.direction === "decrease" && (
-                  <span className="direction-text">minska</span>
-                )}
-                <b>
-                  {formData.effect === "Annat"
-                    ? formData.effectCustom || "Annat"
-                    : formData.effect
-                      ? formData.effect.charAt(0).toLowerCase() +
-                        formData.effect.slice(1)
-                      : ""}
-                </b>
-                .
+                <b>{content.effect}</b>.
               </p>
             </div>
           </div>
+
           {finalized && !showHeader && (
             <div className="copy-hypothesis-bottom">
               <button
