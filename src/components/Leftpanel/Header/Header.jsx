@@ -4,7 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { TbCircleLetterAFilled } from "react-icons/tb";
 import { TbCircleLetterB } from "react-icons/tb";
 import { HiSlash } from "react-icons/hi2";
-import { MdOutlineBuildCircle } from "react-icons/md";
+// import { MdOutlineBuildCircle } from "react-icons/md";
 
 const Header = ({ visible, onOk }) => {
   const [show, setShow] = useState(visible);
@@ -57,10 +57,10 @@ const Header = ({ visible, onOk }) => {
           <button className="header-ok-btn" onClick={onOk}>
             <span className="header-ok-label">
               {" "}
-              <div className="build-icon">
+              {/* <div className="build-icon">
                 <MdOutlineBuildCircle />
-              </div>
-              Börja med Insikt / Observation
+              </div> */}
+              Börja med observation
             </span>
             <span className="header-ok-arrow">
               <FaArrowRight />
