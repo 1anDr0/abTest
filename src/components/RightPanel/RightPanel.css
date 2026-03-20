@@ -191,3 +191,9 @@
 .header-powered-by img {
   height: 9px;
 }
+
+@media (max-width: 900px) {
+  .header-powered-by {
+    display: none;
+  }
+}
