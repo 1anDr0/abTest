@@ -1,13 +1,8 @@
-/* page wrapper just expands to full height */
 .page {
+  position: relative;
   min-height: 100vh;
   width: 100%;
-  background: linear-gradient(
-    135deg,
-    rgba(241, 238, 250, 0.884) 30%,
-    rgba(178, 172, 248, 0.411) 60%,
-    rgba(120, 132, 160, 0.438) 80%
-  );
+  overflow-x: hidden;
 }
 
 html,
@@ -17,31 +12,17 @@ body,
   margin: 0;
 }
 
-.layout {
+/* Full-bleed bakgrunder */
+.layout-background {
+  position: absolute;
+  inset: 0;
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
-  width: 100%;
+  z-index: 0;
 }
 
-html,
-body {
-  @media (max-width: 900px) {
-    .layout {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto;
-    }
-  }
-}
-
-.layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 100vh;
-}
-
-.leftpanel-container {
+.bg-left {
   background:
     radial-gradient(
       circle at 18% 12%,
@@ -54,6 +35,57 @@ body {
       transparent 24%
     ),
     linear-gradient(160deg, #12043d 0%, #0d022f 55%, #08021f 100%);
+}
+
+.bg-right {
+  background: linear-gradient(
+    135deg,
+    rgba(241, 238, 250, 0.884) 30%,
+    rgba(178, 172, 248, 0.411) 60%,
+    rgba(120, 132, 160, 0.438) 80%
+  );
+}
+
+/* Innehållslagret */
+.content-shell {
   position: relative;
-  z-index: 999;
+  z-index: 1;
+  width: 100%;
+  max-width: 1536px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.leftpanel-content,
+.rightpanel-content {
+  min-width: 0;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .layout-background,
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .layout-background,
+  .content-grid {
+    grid-template-rows: 80vh auto;
+  }
+}
+
+.rightpanel-content {
+  min-width: 0;
+  width: 100%;
+
+  display: flex;
+  align-items: center; /* vertikal centrering */
+  justify-content: center; /* horisontell centrering, om du vill */
 }

@@ -4,7 +4,6 @@ import styles from "./Step4.module.css";
 import { useRef, useEffect } from "react";
 import { VscDebugRestart } from "react-icons/vsc";
 import { MdEdit } from "react-icons/md";
-import { FaCheck } from "react-icons/fa6";
 
 const Step4 = ({
   formData,
@@ -161,7 +160,7 @@ const Step4 = ({
           disabled={!isKpiSelected || !isDirectionSelected}
           onClick={handleFinish}
         >
-          Slutför hypotes <FaCheck />
+          Slutför hypotes
         </button>
       ) : (
         <div style={{ display: "flex", gap: "12px", width: "100%" }}>

@@ -31,9 +31,14 @@ const HypotesBuilder = ({ currentStep, setCurrentStep }) => {
 
   return (
     <div className="page">
-      <div className="page-inner">
-        <div className="layout">
-          <div className="leftpanel-container">
+      <div className="layout-background">
+        <div className="bg-left" />
+        <div className="bg-right" />
+      </div>
+
+      <div className="content-shell">
+        <div className="content-grid">
+          <div className="leftpanel-content">
             <LeftPanel
               currentStep={currentStep}
               setCurrentStep={setCurrentStep}
@@ -46,12 +51,14 @@ const HypotesBuilder = ({ currentStep, setCurrentStep }) => {
             />
           </div>
 
-          <RightPanel
-            currentStep={currentStep}
-            formData={formData}
-            finalized={finalized}
-            showHeader={showHeader}
-          />
+          <div className="rightpanel-content">
+            <RightPanel
+              currentStep={currentStep}
+              formData={formData}
+              finalized={finalized}
+              showHeader={showHeader}
+            />
+          </div>
         </div>
       </div>
     </div>
