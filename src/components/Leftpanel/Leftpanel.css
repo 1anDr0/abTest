@@ -208,6 +208,6 @@
 
 @media (max-width: 900px) {
   .leftpanel-wrapper {
-    min-height: 80vh;
+    min-height: 600px;
   }
 }
