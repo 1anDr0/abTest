@@ -170,8 +170,8 @@ select option {
 }
 .restartBtn:hover {
   transform: translateY(-1px);
-  color: #fffffffd;
-  border: 2px solid #ffffff;
+  color: #ffffffd3;
+  border: 2px solid #ffffffd8;
   /* box-shadow: 0 12px 28px rgba(251, 191, 36, 0.22); */
 }
 .restartBtn:disabled {
